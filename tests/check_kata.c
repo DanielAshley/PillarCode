@@ -20,6 +20,15 @@ START_TEST(whenCalcIsAddingIandII)
 }
 END_TEST
 
+
+START_TEST(whenCalcIsAddingIIandII)
+{
+    Kata *k;
+    k = kata_init_values("II", "II");
+    ck_assert_str_eq(kata_add(k), "IV");
+}
+END_TEST
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -32,6 +41,7 @@ Suite * kata_suite(void)
 
     tcase_add_test(tc_core, whenCalcIsAddingIandI);
     tcase_add_test(tc_core, whenCalcIsAddingIandII);
+    tcase_add_test(tc_core, whenCalcIsAddingIIandII);
     suite_add_tcase(s, tc_core);
 
     return s;

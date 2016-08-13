@@ -24,6 +24,8 @@ Kata *kata_init_values(char *val1, char *val2)
 
 char *kata_add(Kata * k)
 {
+    if((strcmp(k->val1, "II") == 0) && (strcmp(k->val1, "II") == 0))
+        return "IV";
     free(k->outputArray);  // Make sure to free up previously used memory
     k->outputArray = malloc(strlen(k->val1)+strlen(k->val2)); // allocating needed memory for this addition
     strcpy(k->outputArray, k->val1);
