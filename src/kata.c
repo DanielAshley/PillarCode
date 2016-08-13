@@ -17,9 +17,11 @@ Kata *kata_init_values(char *val1, char *val2)
         return NULL;
     }
 
-    k->val1 = malloc(50);
-    k->val2 = malloc(50);
+    k->val1 = malloc(20);
+    k->val2 = malloc(20);
+    k->outputArray = malloc(20);
 
+    k->outputArray[0] = '\0';
     k->val1 = val1;
     k->val2 = val2;
     return k;
@@ -86,26 +88,49 @@ printf("3: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", po
 char *kata_arrang_concatenated_input(Kata * k)
 {
     char * outArray = malloc(strlen(k->outputArray));
-    
-    if((k->val1[0] == 'I') && (k->val2[0] == 'V'))
+    char * pch = malloc(strlen(k->outputArray));
+    char * characterV = "V";
+    char * characterI = "I";
+
+    outArray[0] = '\0';
+
+    pch=strchr(k->val1,'V');
+    while(pch!=NULL)
     {
-        strcpy(outArray, k->val2);
-        strcat(outArray, k->val1); // Concatenate both values
+        strcat(outArray, characterV);
+        pch=strchr(pch+1,'V');
     }
-    else
-    { 
-        strcpy(outArray, k->val1);
-        strcat(outArray, k->val2); // Concatenate both values
+    
+    pch=strchr(k->val2,'V');
+    while(pch!=NULL)
+    {
+        strcat(outArray, characterV);
+        pch=strchr(pch+1,'V');
     }
 
+    pch=strchr(k->val1,'I');
+    while(pch!=NULL)
+    {
+        strcat(outArray, characterI);
+        pch=strchr(pch+1,'I');
+    }
+    
+    pch=strchr(k->val2,'I');
+    while(pch!=NULL)
+    {
+        strcat(outArray, characterI);
+        pch=strchr(pch+1,'I');
+    }
+
+    free(pch);
     return outArray;
 }
 
 
 char *kata_add(Kata * k)
 {
-    free(k->outputArray);  // Make sure to free up previously used memory
-    k->outputArray = malloc(50); // allocating needed memory for this addition
+    //free(k->outputArray);  // Make sure to free up previously used memory
+    //k->outputArray = malloc(20); // allocating needed memory for this addition
 
 //Work in Progress
 //    k->val1 = kata_substitute_subtractives(k->val1);
