@@ -4,9 +4,11 @@
 #include <check.h>
 #include "../src/kata.h"
 
-START_TEST(test_kata)
+START_TEST(whenCalcIsAddingIandI)
 {
-
+    Kata *k;
+    k = kata_init_values("I", "I");
+    ck_assert_str_eq(kata_add(k), "II");
 }
 END_TEST
 
@@ -20,7 +22,7 @@ Suite * kata_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_test(tc_core, test_kata);
+    tcase_add_test(tc_core, whenCalcIsAddingIandI);
     suite_add_tcase(s, tc_core);
 
     return s;
