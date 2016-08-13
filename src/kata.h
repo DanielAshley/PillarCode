@@ -5,6 +5,8 @@
 typedef struct Kata Kata;
 
 Kata *kata_init_values(char *val1, char *val2);
+char *kata_convert_IIIII_to_V(char * outputArray);
 char *kata_add(Kata * k);
+void kata_free(Kata *k);
 
 #endif /* KATA_H */
