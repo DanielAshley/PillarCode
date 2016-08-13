@@ -17,6 +17,9 @@ Kata *kata_init_values(char *val1, char *val2)
         return NULL;
     }
 
+    k->val1 = malloc(50);
+    k->val2 = malloc(50);
+
     k->val1 = val1;
     k->val2 = val2;
     return k;
@@ -53,13 +56,67 @@ char *kata_convert_IIIII_to_V(char * inputArray)
     return inputArray;
 }
 
+/*
+//Work in Progress
+char *kata_substitute_subtractives(char * val)
+{
+    char * outArray = malloc(50);
+    char * tempArray = malloc(10);
+
+    int pos_text = 0;
+    int len_text = strlen(val);
+
+    for (pos_text = 0; pos_text < len_text; pos_text++)
+    {
+printf("1: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
+
+//	    sprintf(tempArray, "%d", val[pos_text]);
+	    strncpy(tempArray, val+pos_text, 1);
+	    strcat(outArray, tempArray);
+printf("2: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
+
+    } 
+printf("3: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
+
+    return outArray;
+}
+*/
+
+
+char *kata_arrang_concatenated_input(Kata * k)
+{
+    char * outArray = malloc(strlen(k->outputArray));
+    
+    if((k->val1[0] == 'I') && (k->val2[0] == 'V'))
+    {
+        strcpy(outArray, k->val2);
+        strcat(outArray, k->val1); // Concatenate both values
+    }
+    else
+    { 
+        strcpy(outArray, k->val1);
+        strcat(outArray, k->val2); // Concatenate both values
+    }
+
+    return outArray;
+}
+
+
 char *kata_add(Kata * k)
 {
     free(k->outputArray);  // Make sure to free up previously used memory
-    k->outputArray = malloc(strlen(k->val1)+strlen(k->val2)); // allocating needed memory for this addition
+    k->outputArray = malloc(50); // allocating needed memory for this addition
+
+//Work in Progress
+//    k->val1 = kata_substitute_subtractives(k->val1);
+//    k->val2 = kata_substitute_subtractives(k->val2);
+//    char *tempVal1 = kata_substitute_subtractives(k->val1);
+//    char *tempVal2 = kata_substitute_subtractives(k->val2);
+//    strcpy(k->val1, tempVal1);
+//    strcpy(k->val2, tempVal2);
     
-    strcpy(k->outputArray, k->val1);
-    strcat(k->outputArray, k->val2); // Concatenate both values
+
+    k->outputArray = kata_arrang_concatenated_input(k);
     
     if(strcmp(k->outputArray, "IIII") == 0)
     {
