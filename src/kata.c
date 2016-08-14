@@ -211,7 +211,7 @@ char *kata_arrang_concatenated_input(Kata * k)
 
 
 
-char *kata_search_and_remove(char * inputVal, char removeVal)
+char *kata_search_and_remove_val2(char * inputVal, char removeVal)
 {
     char * outArray = malloc(20);
     char * pch = malloc(20);
@@ -221,6 +221,25 @@ char *kata_search_and_remove(char * inputVal, char removeVal)
     pch=strchr(inputVal,removeVal);
     strcat(outArray, pch+1);
     //printf("HERE-SR  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+    return outArray;
+}
+
+char *kata_search_and_remove_val1(char * inputVal, char removeVal)
+{
+    char * outArray = malloc(20);
+    char * pch = malloc(20);
+
+    outArray[0] = '\0';
+
+    pch=strchr(inputVal,removeVal);
+    if(pch==NULL)
+    { 
+        pch=strchr(inputVal,'V');
+        strcat(outArray, "IIII");
+    }
+    else
+        strcat(outArray, pch+1);
+    //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
     return outArray;
 }
 
@@ -239,22 +258,10 @@ char *kata_remove_like_values(char * val1, char * val2)
         if(tempVal2[pos_count-1] == 'I')
         {
 	    //printf("HERE1\n");
-            tempVal2 = kata_search_and_remove(tempVal2, 'I');
-            //tempVal2 = "";
-	    //printf("HERE11  -  tempVal2: %s\n", tempVal2);
-
-            for(pos_count = strlen(tempVal1); pos_count > 0; pos_count--)
-            {
-                //printf("HERE2  -  tempVal1[pos_count]: %c    strlen(tempVal2): %d\n", tempVal1[pos_count-1], strlen(tempVal1) );
-                if(tempVal1[pos_count-1] == 'I')
-                {
-         	    //printf("HERE3\n");            
-                    tempVal1 = kata_search_and_remove(tempVal1, 'I');
-                    pos_count = 0;
-         	    //printf("HERE4  -  tempVal1: %s\n", tempVal1);
-                    //tempVal1[pos_count] = '\0';
-                }
-            }
+            tempVal2 = kata_search_and_remove_val2(tempVal2, 'I');
+            tempVal1 = kata_search_and_remove_val1(tempVal1, 'I');
+            pos_count = 0;
+     	    //printf("HERE4  -  tempVal1: %s\n", tempVal1);
         }
     }
 
