@@ -50,7 +50,7 @@ char *kata_check_special_case(char * inputArray, char * specialCase, char * conv
 		strcat(savedEnding,conversionValue);
 		strcat(savedEnding, (inputArray+pos_search+len_search));
                 savedEnding[strlen(inputArray)-(len_search-strlen(conversionValue))] = '\0';
-                //printf("inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+                //printf("Special Cases  -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
                 return savedEnding;
             }
         }
@@ -79,39 +79,54 @@ char *kata_convert_low_to_high(char * inputArray)
         return kata_convert_low_to_high(savedEnding); 
 }
 
-
-char *kata_substitute_subtractives(char * val)
+char *kata_check_subtractives(char * inputArray, char * specialCase, char * conversionValue)
 {
-    char searchFor[3] = "IV";
-    char *savedEnding = malloc(strlen(val));
+    char *savedEnding = malloc(strlen(inputArray)); 
+
     int pos_text = 0;
     int pos_search = 0;
-    int len_search = 2;
-    int len_text = strlen(val);
-    int extraSpace = 0;
+    int len_search = strlen(specialCase);
 
-    for (pos_text = 0; pos_text < len_text; ++pos_text)
+    for (pos_text = 0; pos_text < strlen(inputArray); ++pos_text)
     {
-        savedEnding[pos_text+extraSpace] = val[pos_text];
-        if(val[pos_text] == searchFor[pos_search])
+        if(inputArray[pos_text] == specialCase[pos_search])
         {
             ++pos_search;
-            if(pos_search == len_search) // match for IV found
+            if(pos_search == len_search) // match for special case found
             {
-                extraSpace = 2;
-                savedEnding[pos_text] = 'I';
-                savedEnding[pos_text+1] = 'I';
-                savedEnding[pos_text+2] = 'I';
-                pos_search = 0;
+		for(pos_search = 0; pos_search < (pos_text+1-len_search); pos_search++)
+                {
+                    savedEnding[pos_search] = inputArray[pos_search];
+                }
+                savedEnding[pos_search] = '\0';
+		strcat(savedEnding,conversionValue);
+		strcat(savedEnding, (inputArray+pos_search+len_search));
+                savedEnding[strlen(inputArray)-(len_search-strlen(conversionValue))] = '\0';
+                //printf("Subtractives  -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+                return savedEnding;
             }
         }
         else
         {
+           pos_text -= pos_search;
            pos_search = 0;
         }
     }
-    savedEnding[pos_text+extraSpace] = '\0';
-    return savedEnding;
+
+    //savedEnding[pos_text+extraSpace] = '\0';
+    return inputArray;
+}
+char *kata_substitute_subtractives(char * val)
+{
+    char *savedEnding = malloc(strlen(val));
+    savedEnding = kata_check_subtractives(val, "IV", "IIII");
+    savedEnding = kata_check_subtractives(savedEnding, "IX", "VIIII");
+
+
+    if(strcmp(val,savedEnding) == 0)
+        return val;
+    else
+        return kata_substitute_subtractives(savedEnding); 
 }
 
 
@@ -161,6 +176,8 @@ char *kata_add(Kata * k)
 {
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
+
+//printf("val1: %s    val2: %s\n", k->val1, k->val2);
 
     k->outputArray = kata_arrang_concatenated_input(k);
 
