@@ -168,42 +168,42 @@ char *kata_search_for_char(char * input, char * searchChar)
     return outArray;
 }
 
-char *kata_arrang_concatenated_input(Kata * k)
+char *kata_arrang_concatenated_input(char * val1, char * val2)
 {
-    char * outArray = malloc(strlen(k->outputArray));
+    char * outArray = malloc(20);
     char * savedArray = malloc(20);
-    char * pch = malloc(strlen(k->outputArray));
+    char * pch = malloc(20);
 
     outArray[0] = '\0';
     savedArray[0] = '\0';
 
-    savedArray = kata_search_for_char(k->val1, "M");
+    savedArray = kata_search_for_char(val1, "M");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "M");
+    savedArray = kata_search_for_char(val2, "M");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "D");
+    savedArray = kata_search_for_char(val1, "D");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "D");
+    savedArray = kata_search_for_char(val2, "D");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "C");
+    savedArray = kata_search_for_char(val1, "C");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "C");
+    savedArray = kata_search_for_char(val2, "C");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "L");
+    savedArray = kata_search_for_char(val1, "L");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "L");
+    savedArray = kata_search_for_char(val2, "L");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "X");
+    savedArray = kata_search_for_char(val1, "X");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "X");
+    savedArray = kata_search_for_char(val2, "X");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "V");
+    savedArray = kata_search_for_char(val1, "V");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "V");
+    savedArray = kata_search_for_char(val2, "V");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val1, "I");
+    savedArray = kata_search_for_char(val1, "I");
     strcat(outArray, savedArray);
-    savedArray = kata_search_for_char(k->val2, "I");
+    savedArray = kata_search_for_char(val2, "I");
     strcat(outArray, savedArray);
     //printf("Concat val strings  -  outArray: %s\n", outArray);
     return outArray;
@@ -229,7 +229,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
     char * outArray = malloc(20);
     char * pch = malloc(20);
     strcpy(outArray, inputVal);
-
+    int pos = 0;
 //  char str[] = "memmove can be very useful.";
 //  memmove (str+(strlen(str)-1), str+(strlen(str)), 1);
 //  puts (str);
@@ -268,24 +268,31 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
         {
-            pch=strchr(inputVal,'V');
+            pch=strchr(inputVal,'X');
             if(pch==NULL)
             {
-                pch=strchr(inputVal,'X');
+                pch=strchr(inputVal,'L');
                 if(pch==NULL)
                 {
                         
                 }
                 else
-                    strcat(outArray, "VIIII");
+                    memmove(outArray+strlen(outArray)-1, "IIII", 5);
+                    //strcat(outArray, "VIIII");
             }
             else
-                strcat(outArray, "IIII");
+            {
+                pos = strlen(outArray)-strlen(pch);
+                memmove(outArray+pos, "V", 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                memmove(outArray+pos+1, pch+1, 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                //strcat(outArray, "IIII");
+            }
         }
         else
             memmove(outArray+strlen(outArray)-strlen(pch), pch+1, strlen(pch)+1);
             //strcat(outArray, pch+1);
-        //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
     }
     return outArray;
 }
@@ -339,7 +346,7 @@ char *kata_add(Kata * k)
 {
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
-    k->outputArray = kata_arrang_concatenated_input(k);
+    k->outputArray = kata_arrang_concatenated_input(k->val1, k->val2);
     k->outputArray = kata_convert_low_to_high(k->outputArray);
     k->outputArray = kata_substitute_subtractives_back(k->outputArray);
     return k->outputArray;
@@ -353,6 +360,8 @@ char *kata_sub(Kata * k)
 //printf("val1: %s    val2: %s\n", k->val1, k->val2);
 
     k->outputArray = kata_remove_like_values(k->val1, k->val2);
+
+    k->outputArray = kata_arrang_concatenated_input(k->outputArray, "");
 
 //printf("outputArray: %s\n", k->outputArray);
 

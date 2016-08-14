@@ -363,6 +363,26 @@ START_TEST(whenCalcIsSubtractingXandI)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingXIIandV)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("XII", "V");
+    ck_assert_str_eq(kata_sub(k), "VII");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingXXXIIandV)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("XXXII", "V");
+    ck_assert_str_eq(kata_sub(k), "XXVII");
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -418,6 +438,8 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingVIIIandIV);     // VIII-IV         = IV
     tcase_add_test(tc_core, whenCalcIsSubtractingVIIIandV);      // VIII-V          = III
     tcase_add_test(tc_core, whenCalcIsSubtractingXandI);         // X-I             = IX
+    tcase_add_test(tc_core, whenCalcIsSubtractingXIIandV);       // XII-V           = VII
+    tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandV);       // XXXII-V           = XXVII
 
     suite_add_tcase(s, tc_core);
 
