@@ -225,12 +225,12 @@ char *kata_search_and_remove(char * inputVal, char removeVal)
 }
 
 
-char *kata_remove_like_values(Kata * k)
+char *kata_remove_like_values(char * val1, char * val2)
 {
 //    char * outArray = malloc(strlen(k->outputArray));
 //    outArray = "I";
-    char * tempVal1 = k->val1;
-    char * tempVal2 = k->val2;
+    char * tempVal1 = val1;
+    char * tempVal2 = val2;
 
     int pos_count = 0;
     for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
@@ -259,20 +259,17 @@ char *kata_remove_like_values(Kata * k)
     }
 
     //printf("tempVal1: %s    tempVal2: %s\n", tempVal1, tempVal2);
-    return tempVal1;
+    if(strlen(tempVal2) != 0)
+        return kata_remove_like_values(tempVal1, tempVal2);
+    else
+        return tempVal1;
 }
 
 char *kata_add(Kata * k)
 {
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
-
-//printf("val1: %s    val2: %s\n", k->val1, k->val2);
-
     k->outputArray = kata_arrang_concatenated_input(k);
-
-//printf("outputArray: %s\n", k->outputArray);
-
     k->outputArray = kata_convert_low_to_high(k->outputArray);
     k->outputArray = kata_substitute_subtractives_back(k->outputArray);
     return k->outputArray;
@@ -285,7 +282,7 @@ char *kata_sub(Kata * k)
 
 //printf("val1: %s    val2: %s\n", k->val1, k->val2);
 
-    k->outputArray = kata_remove_like_values(k);
+    k->outputArray = kata_remove_like_values(k->val1, k->val2);
 
 //printf("outputArray: %s\n", k->outputArray);
 

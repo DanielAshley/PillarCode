@@ -305,6 +305,15 @@ START_TEST(whenCalcIsSubtractingIIIandI)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingIVandII)
+{
+    Kata *k;
+    k = kata_init_values("IV", "II");
+    ck_assert_str_eq(kata_sub(k), "II");
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -354,6 +363,7 @@ Suite * kata_suite(void)
     //SUBTRACTION TESTS
     tcase_add_test(tc_core, whenCalcIsSubtractingIIandI);        // II+I            = I
     tcase_add_test(tc_core, whenCalcIsSubtractingIIIandI);       // III+I           = II
+    tcase_add_test(tc_core, whenCalcIsSubtractingIVandII);       // IV+II           = II
 
     suite_add_tcase(s, tc_core);
 
