@@ -265,6 +265,19 @@ char *kata_remove_like_values(char * val1, char * val2)
         }
     }
 
+    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+    {
+	    //printf("HERE0  -  tempVal2[pos_count]: %c    strlen(tempVal2): %d\n", tempVal2[pos_count-1], strlen(tempVal2) );
+        if(tempVal2[pos_count-1] == 'V')
+        {
+	    //printf("HERE1\n");
+            tempVal2 = kata_search_and_remove_val2(tempVal2, 'V');
+            tempVal1 = kata_search_and_remove_val1(tempVal1, 'V');
+            pos_count = 0;
+     	    //printf("HERE4  -  tempVal1: %s\n", tempVal1);
+        }
+    }
+
     //printf("tempVal1: %s    tempVal2: %s\n", tempVal1, tempVal2);
     if(strlen(tempVal2) != 0)
         return kata_remove_like_values(tempVal1, tempVal2);

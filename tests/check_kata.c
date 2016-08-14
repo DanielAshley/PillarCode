@@ -323,6 +323,33 @@ START_TEST(whenCalcIsSubtractingVandIV)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingVIIandIV)
+{
+    Kata *k;
+    k = kata_init_values("VII", "IV");
+    ck_assert_str_eq(kata_sub(k), "III");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingVIIIandIV)
+{
+    Kata *k;
+    k = kata_init_values("VIII", "IV");
+    ck_assert_str_eq(kata_sub(k), "IV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingVIIIandV)
+{
+    Kata *k;
+    k = kata_init_values("VIII", "V");
+    ck_assert_str_eq(kata_sub(k), "III");
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -373,7 +400,9 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingIIandI);        // II+I            = I
     tcase_add_test(tc_core, whenCalcIsSubtractingIIIandI);       // III+I           = II
     tcase_add_test(tc_core, whenCalcIsSubtractingIVandII);       // IV+II           = II
-    tcase_add_test(tc_core, whenCalcIsSubtractingVandIV);       // V+IV           = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingVandIV);        // V+IV            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingVIIandIV);      // VII+IV          = III
+    tcase_add_test(tc_core, whenCalcIsSubtractingVIIIandV);      // VIII+V          = III
 
     suite_add_tcase(s, tc_core);
 
