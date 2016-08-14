@@ -183,6 +183,46 @@ START_TEST(whenCalcIsAddingVIIIandIX)
 END_TEST
 
 
+START_TEST(whenCalcIsAddingIXandIX)
+{
+    Kata *k;
+    k = kata_init_values("IX", "IX");
+    ck_assert_str_eq(kata_add(k), "XVIII");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingXandIX)
+{
+    Kata *k;
+    k = kata_init_values("X", "IX");
+    ck_assert_str_eq(kata_add(k), "XIX");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingXandX)
+{
+    Kata *k;
+    k = kata_init_values("X", "X");
+    ck_assert_str_eq(kata_add(k), "XX");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingXIVandXVII)
+{
+    Kata *k;
+    k = kata_init_values("XIV", "XVII");
+    ck_assert_str_eq(kata_add(k), "XXXI");
+    kata_free(k);
+}
+END_TEST
+
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -211,6 +251,10 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsAddingVIIIandVI);     // VIII+VI    = XIV
     tcase_add_test(tc_core, whenCalcIsAddingVIIIandVIII);   // VIII+VIII  = XVI
     tcase_add_test(tc_core, whenCalcIsAddingVIIIandIX);     // VIII+IX    = XVII
+    tcase_add_test(tc_core, whenCalcIsAddingIXandIX);       // IX+IX      = XVIII
+    tcase_add_test(tc_core, whenCalcIsAddingXandIX);        // X+IX       = XIX
+    tcase_add_test(tc_core, whenCalcIsAddingXandX);         // X+X        = XX
+    tcase_add_test(tc_core, whenCalcIsAddingXIVandXVII);    // XIV+XVII   = XXXI
     suite_add_tcase(s, tc_core);
 
     return s;

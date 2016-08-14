@@ -69,10 +69,23 @@ char *kata_convert_low_to_high(char * inputArray)
     char *savedEnding = malloc(strlen(inputArray));
 
     savedEnding = kata_check_special_case(inputArray, "VV", "X");
-    savedEnding = kata_check_special_case(savedEnding, "VIIII", "IX");
     savedEnding = kata_check_special_case(savedEnding, "IIIII", "V");
-    savedEnding = kata_check_special_case(savedEnding, "IIII", "IV");
+    
+    //printf("Special Cases  -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+    if(strcmp(inputArray,savedEnding) == 0)
+        return inputArray;
+    else
+        return kata_convert_low_to_high(savedEnding); 
+}
 
+char *kata_substitute_subtractives_back(char * inputArray)
+{
+    char *savedEnding = malloc(strlen(inputArray));
+    
+    savedEnding = kata_check_special_case(inputArray, "VIIII", "IX");
+    savedEnding = kata_check_special_case(savedEnding, "IIII", "IV");
+    
+    //printf("Substitute Subtractives Back -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
     if(strcmp(inputArray,savedEnding) == 0)
         return inputArray;
     else
@@ -112,8 +125,6 @@ char *kata_check_subtractives(char * inputArray, char * specialCase, char * conv
            pos_search = 0;
         }
     }
-
-    //savedEnding[pos_text+extraSpace] = '\0';
     return inputArray;
 }
 char *kata_substitute_subtractives(char * val)
@@ -129,45 +140,44 @@ char *kata_substitute_subtractives(char * val)
         return kata_substitute_subtractives(savedEnding); 
 }
 
+char *kata_search_for_char(char * input, char * searchChar)
+{
+    char * outArray = malloc(20);
+    char * pch = malloc(20);
+
+    outArray[0] = '\0';
+
+    pch=strchr(input,searchChar[0]);
+    while(pch!=NULL)
+    {
+        strcat(outArray, searchChar);
+        pch=strchr(pch+1, searchChar[0]);
+    }
+    return outArray;
+}
 
 char *kata_arrang_concatenated_input(Kata * k)
 {
     char * outArray = malloc(strlen(k->outputArray));
+    char * savedArray = malloc(20);
     char * pch = malloc(strlen(k->outputArray));
-    char * characterV = "V";
-    char * characterI = "I";
 
     outArray[0] = '\0';
+    savedArray[0] = '\0';
 
-    pch=strchr(k->val1,'V');
-    while(pch!=NULL)
-    {
-        strcat(outArray, characterV);
-        pch=strchr(pch+1,'V');
-    }
-    
-    pch=strchr(k->val2,'V');
-    while(pch!=NULL)
-    {
-        strcat(outArray, characterV);
-        pch=strchr(pch+1,'V');
-    }
-
-    pch=strchr(k->val1,'I');
-    while(pch!=NULL)
-    {
-        strcat(outArray, characterI);
-        pch=strchr(pch+1,'I');
-    }
-    
-    pch=strchr(k->val2,'I');
-    while(pch!=NULL)
-    {
-        strcat(outArray, characterI);
-        pch=strchr(pch+1,'I');
-    }
-
-    free(pch);
+    savedArray = kata_search_for_char(k->val1, "X");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val2, "X");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val1, "V");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val2, "V");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val1, "I");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val2, "I");
+    strcat(outArray, savedArray);
+    //printf("Concat val strings  -  outArray: %s\n", outArray);
     return outArray;
 }
 
@@ -184,6 +194,7 @@ char *kata_add(Kata * k)
 //printf("outputArray: %s\n", k->outputArray);
 
     k->outputArray = kata_convert_low_to_high(k->outputArray);
+    k->outputArray = kata_substitute_subtractives_back(k->outputArray);
     return k->outputArray;
 }
 
