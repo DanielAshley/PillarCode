@@ -223,6 +223,16 @@ START_TEST(whenCalcIsAddingXIVandXVII)
 END_TEST
 
 
+START_TEST(whenCalcIsAddingXXandXXX)
+{
+    Kata *k;
+    k = kata_init_values("XX", "XXX");
+    ck_assert_str_eq(kata_add(k), "L");
+    kata_free(k);
+}
+END_TEST
+
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -255,6 +265,7 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsAddingXandIX);        // X+IX       = XIX
     tcase_add_test(tc_core, whenCalcIsAddingXandX);         // X+X        = XX
     tcase_add_test(tc_core, whenCalcIsAddingXIVandXVII);    // XIV+XVII   = XXXI
+    tcase_add_test(tc_core, whenCalcIsAddingXXandXXX);      // XX+XXX   = L
     suite_add_tcase(s, tc_core);
 
     return s;

@@ -68,7 +68,8 @@ char *kata_convert_low_to_high(char * inputArray)
 {
     char *savedEnding = malloc(strlen(inputArray));
 
-    savedEnding = kata_check_special_case(inputArray, "VV", "X");
+    savedEnding = kata_check_special_case(inputArray, "XXXXX", "L");
+    savedEnding = kata_check_special_case(savedEnding, "VV", "X");
     savedEnding = kata_check_special_case(savedEnding, "IIIII", "V");
     
     //printf("Special Cases  -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
