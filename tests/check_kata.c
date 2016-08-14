@@ -4,6 +4,7 @@
 #include <check.h>
 #include "../src/kata.h"
 
+// BEGINNING OF ADDITION TESTS
 START_TEST(whenCalcIsAddingIandI)
 {
     Kata *k;
@@ -311,6 +312,20 @@ START_TEST(whenCalcIsAddingMMMCMXCVIIIandI)
     kata_free(k);
 }
 END_TEST
+// END OF ADDITION TESTS
+
+
+// BEGINNING OF SUBTRACTION TESTS
+START_TEST(whenCalcIsSubtractingIIandI)
+{
+    Kata *k;
+    k = kata_init_values("II", "I");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
+
 
 
 Suite * kata_suite(void)
@@ -323,6 +338,7 @@ Suite * kata_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
+    //ADDITION TESTS
     tcase_add_test(tc_core, whenCalcIsAddingIandI);              // I+I             = II
     tcase_add_test(tc_core, whenCalcIsAddingIandII);             // I+II            = III
     tcase_add_test(tc_core, whenCalcIsAddingIIandII);            // II+II           = IV
@@ -354,6 +370,10 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsAddingMMDCCLXVandMCCXXXIV);   // MMDCCLXV+MCCXXXIV   = MMMCMXCIX
     tcase_add_test(tc_core, whenCalcIsAddingMCCXXXIVandMCCXXXIV);   // MCCXXXIV+MCCXXXIV   = MMCDLXVIII
     tcase_add_test(tc_core, whenCalcIsAddingMMMCMXCVIIIandI);       // MMMCMXCVIII+I       = MMMCMXCIX
+
+    //SUBTRACTION TESTS
+    tcase_add_test(tc_core, whenCalcIsSubtractingIIandI);        // II+I            = I
+
     suite_add_tcase(s, tc_core);
 
     return s;

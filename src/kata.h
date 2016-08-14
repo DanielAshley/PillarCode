@@ -12,7 +12,9 @@ char *kata_check_subtractives(char * inputArray, char * specialCase, char * conv
 char *kata_substitute_subtractives(char * val);
 char *kata_search_for_char(char * input, char * searchChar);
 char *kata_arrang_concatenated_input(Kata * k);
+char *kata_remove_like_values(Kata * k);
 char *kata_add(Kata * k);
+char *kata_sub(Kata * k);
 void kata_free(Kata *k);
 
 #endif /* KATA_H */
