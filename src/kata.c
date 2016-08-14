@@ -30,12 +30,39 @@ Kata *kata_init_values(char *val1, char *val2)
 
 char *kata_convert_low_to_high(char * inputArray)
 {
-    char searchFor[6] = "IIIII";
+    int len_text = strlen(inputArray);
+
+    char searchFor[6] = "VIIII";
     char *savedEnding;
     int pos_text = 0;
     int pos_search = 0;
     int len_search = 5;
-    int len_text = strlen(inputArray);
+
+    for (pos_text = 0; pos_text < len_text; ++pos_text)
+    {
+        if(inputArray[pos_text] == searchFor[pos_search])
+        {
+            ++pos_search;
+            if(pos_search == len_search) // match for IIII (ie:IV) found
+            {
+		savedEnding = malloc(len_text - (len_search-1));
+		strcpy(savedEnding,"IX");
+		strcat(savedEnding, inputArray+5);
+                printf("inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+                return kata_convert_low_to_high(savedEnding);
+            }
+        }
+        else
+        {
+           pos_text -= pos_search;
+           pos_search = 0;
+        }
+    }
+
+    strcpy(searchFor,"IIIII") ;
+    pos_text = 0;
+    pos_search = 0;
+    len_search = 5;
 
     for (pos_text = 0; pos_text < len_text; ++pos_text)
     {
@@ -47,7 +74,8 @@ char *kata_convert_low_to_high(char * inputArray)
 		savedEnding = malloc(len_text - (len_search-1));
 		strcpy(savedEnding,"V") ;
 		strcat(savedEnding, inputArray+5);
-                return savedEnding;
+                printf("inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+                return kata_convert_low_to_high(savedEnding);
             }
         }
         else
@@ -73,7 +101,8 @@ char *kata_convert_low_to_high(char * inputArray)
 		savedEnding = malloc(len_text - (len_search-1));
 		strcpy(savedEnding,"IV");
 		strcat(savedEnding, inputArray+4);
-                return savedEnding;
+                printf("inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
+                return kata_convert_low_to_high(savedEnding);
             }
         }
         else
