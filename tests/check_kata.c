@@ -283,6 +283,36 @@ START_TEST(whenCalcIsAddingCCandDCC)
 END_TEST
 
 
+START_TEST(whenCalcIsAddingMMDCCLXVandMCCXXXIV)
+{
+    Kata *k;
+    k = kata_init_values("MMDCCLXV", "MCCXXXIV");
+    ck_assert_str_eq(kata_add(k), "MMMCMXCIX");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingMCCXXXIVandMCCXXXIV)
+{
+    Kata *k;
+    k = kata_init_values("MCCXXXIV", "MCCXXXIV");
+    ck_assert_str_eq(kata_add(k), "MMCDLXVIII");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingMMMCMXCVIIIandI)
+{
+    Kata *k;
+    k = kata_init_values("MMMCMXCVIII", "I");
+    ck_assert_str_eq(kata_add(k), "MMMCMXCIX");
+    kata_free(k);
+}
+END_TEST
+
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -321,6 +351,9 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsAddingLXXIVandXXVII);      // LXXIV+XXVII     = CI
     tcase_add_test(tc_core, whenCalcIsAddingCCandCC);            // CC+CC           = CD
     tcase_add_test(tc_core, whenCalcIsAddingCCandDCC);           // CC+DCC          = CM
+    tcase_add_test(tc_core, whenCalcIsAddingMMDCCLXVandMCCXXXIV);   // MMDCCLXV+MCCXXXIV   = MMMCMXCIX
+    tcase_add_test(tc_core, whenCalcIsAddingMCCXXXIVandMCCXXXIV);   // MCCXXXIV+MCCXXXIV   = MMCDLXVIII
+    tcase_add_test(tc_core, whenCalcIsAddingMMMCMXCVIIIandI);       // MMMCMXCVIII+I       = MMMCMXCIX
     suite_add_tcase(s, tc_core);
 
     return s;
