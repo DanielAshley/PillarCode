@@ -31,7 +31,7 @@ Kata *kata_init_values(char *val1, char *val2)
 char *kata_check_special_case(char * inputArray, char * specialCase, char * conversionValue)
 {
     char *savedEnding = malloc(strlen(inputArray)); 
-    savedEnding[0] = '\0';
+
     int pos_text = 0;
     int pos_search = 0;
     int len_search = strlen(specialCase);
@@ -40,10 +40,16 @@ char *kata_check_special_case(char * inputArray, char * specialCase, char * conv
         if(inputArray[pos_text] == specialCase[pos_search])
         {
             ++pos_search;
-            if(pos_search == len_search) // match for IIII (ie:IV) found
+            if(pos_search == len_search) // match for special case found
             {
-		strcpy(savedEnding,conversionValue);
-		strcat(savedEnding, inputArray+len_search);
+		for(pos_search = 0; pos_search < (pos_text+1-len_search); pos_search++)
+                {
+                    savedEnding[pos_search] = inputArray[pos_search];
+                }
+                savedEnding[pos_search] = '\0';
+		strcat(savedEnding,conversionValue);
+		strcat(savedEnding, (inputArray+pos_search+len_search));
+                savedEnding[strlen(inputArray)-(len_search-strlen(conversionValue))] = '\0';
                 //printf("inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
                 return savedEnding;
             }
@@ -157,6 +163,9 @@ char *kata_add(Kata * k)
     k->val2 = kata_substitute_subtractives(k->val2);
 
     k->outputArray = kata_arrang_concatenated_input(k);
+
+//printf("outputArray: %s\n", k->outputArray);
+
     k->outputArray = kata_convert_low_to_high(k->outputArray);
     return k->outputArray;
 }
