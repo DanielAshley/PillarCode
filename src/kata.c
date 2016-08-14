@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "kata.h"
@@ -27,7 +28,7 @@ Kata *kata_init_values(char *val1, char *val2)
     return k;
 }
 
-char *kata_convert_IIIII_to_V(char * inputArray)
+char *kata_convert_low_to_high(char * inputArray)
 {
     char searchFor[6] = "IIIII";
     char *savedEnding;
@@ -36,12 +37,12 @@ char *kata_convert_IIIII_to_V(char * inputArray)
     int len_search = 5;
     int len_text = strlen(inputArray);
 
-    for (pos_text = 0; pos_text <= (len_text - len_search + pos_search); ++pos_text)
+    for (pos_text = 0; pos_text < len_text; ++pos_text)
     {
         if(inputArray[pos_text] == searchFor[pos_search])
         {
             ++pos_search;
-            if(pos_search == len_search) // match for IIIII found
+            if(pos_search == len_search) // match for IIIII (ie:V) found
             {
 		savedEnding = malloc(len_text - (len_search-1));
 		strcpy(savedEnding,"V") ;
@@ -55,34 +56,70 @@ char *kata_convert_IIIII_to_V(char * inputArray)
            pos_search = 0;
         }
     }
+
+
+    strcpy(searchFor,"IIII") ;
+    pos_text = 0;
+    pos_search = 0;
+    len_search = 4;
+    
+    for (pos_text = 0; pos_text < len_text; ++pos_text)
+    {
+        if(inputArray[pos_text] == searchFor[pos_search])
+        {
+            ++pos_search;
+            if(pos_search == len_search) // match for IIII (ie:IV) found
+            {
+		savedEnding = malloc(len_text - (len_search-1));
+		strcpy(savedEnding,"IV");
+		strcat(savedEnding, inputArray+4);
+                return savedEnding;
+            }
+        }
+        else
+        {
+           pos_text -= pos_search;
+           pos_search = 0;
+        }
+    }
+
     return inputArray;
 }
 
-/*
-//Work in Progress
+
 char *kata_substitute_subtractives(char * val)
 {
-    char * outArray = malloc(50);
-    char * tempArray = malloc(10);
-
+    char searchFor[3] = "IV";
+    char *savedEnding = malloc(strlen(val));
     int pos_text = 0;
+    int pos_search = 0;
+    int len_search = 2;
     int len_text = strlen(val);
+    int extraSpace = 0;
 
-    for (pos_text = 0; pos_text < len_text; pos_text++)
+    for (pos_text = 0; pos_text < len_text; ++pos_text)
     {
-printf("1: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
-
-//	    sprintf(tempArray, "%d", val[pos_text]);
-	    strncpy(tempArray, val+pos_text, 1);
-	    strcat(outArray, tempArray);
-printf("2: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
-
-    } 
-printf("3: pos_text: %d,    len_text: %d,    tempArray: %s,    outArray: %s", pos_text, len_text, tempArray, outArray);
-
-    return outArray;
+        savedEnding[pos_text+extraSpace] = val[pos_text];
+        if(val[pos_text] == searchFor[pos_search])
+        {
+            ++pos_search;
+            if(pos_search == len_search) // match for IV found
+            {
+                extraSpace = 2;
+                savedEnding[pos_text] = 'I';
+                savedEnding[pos_text+1] = 'I';
+                savedEnding[pos_text+2] = 'I';
+                pos_search = 0;
+            }
+        }
+        else
+        {
+           pos_search = 0;
+        }
+    }
+    savedEnding[pos_text+extraSpace] = '\0';
+    return savedEnding;
 }
-*/
 
 
 char *kata_arrang_concatenated_input(Kata * k)
@@ -129,26 +166,11 @@ char *kata_arrang_concatenated_input(Kata * k)
 
 char *kata_add(Kata * k)
 {
-    //free(k->outputArray);  // Make sure to free up previously used memory
-    //k->outputArray = malloc(20); // allocating needed memory for this addition
-
-//Work in Progress
-//    k->val1 = kata_substitute_subtractives(k->val1);
-//    k->val2 = kata_substitute_subtractives(k->val2);
-//    char *tempVal1 = kata_substitute_subtractives(k->val1);
-//    char *tempVal2 = kata_substitute_subtractives(k->val2);
-//    strcpy(k->val1, tempVal1);
-//    strcpy(k->val2, tempVal2);
-    
+    k->val1 = kata_substitute_subtractives(k->val1);
+    k->val2 = kata_substitute_subtractives(k->val2);
 
     k->outputArray = kata_arrang_concatenated_input(k);
-    
-    if(strcmp(k->outputArray, "IIII") == 0)
-    {
-        free(k->outputArray);
-        k->outputArray = "IV";
-    }
-    k->outputArray = kata_convert_IIIII_to_V(k->outputArray);
+    k->outputArray = kata_convert_low_to_high(k->outputArray);
     return k->outputArray;
 }
 

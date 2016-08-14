@@ -93,6 +93,16 @@ START_TEST(whenCalcIsAddingIIandV)
 END_TEST
 
 
+START_TEST(whenCalcIsAddingIVandI)
+{
+    Kata *k;
+    k = kata_init_values("IV", "I");
+    ck_assert_str_eq(kata_add(k), "V");
+    kata_free(k);
+}
+END_TEST
+
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -112,6 +122,7 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsAddingVandI);         // V+I        = VI
     tcase_add_test(tc_core, whenCalcIsAddingIandV);         // I+V        = VI
     tcase_add_test(tc_core, whenCalcIsAddingIIandV);        // II+V       = VII
+    tcase_add_test(tc_core, whenCalcIsAddingIVandI);        // IV+I       = V
     suite_add_tcase(s, tc_core);
 
     return s;
