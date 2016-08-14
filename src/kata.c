@@ -68,6 +68,8 @@ char *kata_convert_low_to_high(char * inputArray)
 {
     char *savedEnding = malloc(strlen(inputArray));
 
+    savedEnding = kata_check_special_case(inputArray, "DD", "M");
+    savedEnding = kata_check_special_case(inputArray, "CCCCC", "D");
     savedEnding = kata_check_special_case(inputArray, "LL", "C");
     savedEnding = kata_check_special_case(savedEnding, "XXXXX", "L");
     savedEnding = kata_check_special_case(savedEnding, "VV", "X");
@@ -84,7 +86,9 @@ char *kata_substitute_subtractives_back(char * inputArray)
 {
     char *savedEnding = malloc(strlen(inputArray));
     
-    savedEnding = kata_check_special_case(inputArray, "LXXXX", "XC");
+    savedEnding = kata_check_special_case(inputArray, "DCCCC", "CM");
+    savedEnding = kata_check_special_case(savedEnding, "CCCC", "CD");
+    savedEnding = kata_check_special_case(savedEnding, "LXXXX", "XC");
     savedEnding = kata_check_special_case(savedEnding, "XXXX", "XL");
     savedEnding = kata_check_special_case(savedEnding, "VIIII", "IX");
     savedEnding = kata_check_special_case(savedEnding, "IIII", "IV");
@@ -134,7 +138,9 @@ char *kata_check_subtractives(char * inputArray, char * specialCase, char * conv
 char *kata_substitute_subtractives(char * val)
 {
     char *savedEnding = malloc(strlen(val));
-    savedEnding = kata_check_subtractives(val, "XC", "LXXXX");
+    savedEnding = kata_check_subtractives(val, "CM", "DCCCC");
+    savedEnding = kata_check_subtractives(savedEnding, "CD", "CCCC");
+    savedEnding = kata_check_subtractives(savedEnding, "XC", "LXXXX");
     savedEnding = kata_check_subtractives(savedEnding, "XL", "XXXX");
     savedEnding = kata_check_subtractives(savedEnding, "IX", "VIIII");
     savedEnding = kata_check_subtractives(savedEnding, "IV", "IIII");
@@ -171,6 +177,14 @@ char *kata_arrang_concatenated_input(Kata * k)
     outArray[0] = '\0';
     savedArray[0] = '\0';
 
+    savedArray = kata_search_for_char(k->val1, "M");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val2, "M");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val1, "D");
+    strcat(outArray, savedArray);
+    savedArray = kata_search_for_char(k->val2, "D");
+    strcat(outArray, savedArray);
     savedArray = kata_search_for_char(k->val1, "C");
     strcat(outArray, savedArray);
     savedArray = kata_search_for_char(k->val2, "C");

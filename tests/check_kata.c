@@ -253,6 +253,36 @@ START_TEST(whenCalcIsAddingLXXandXX)
 END_TEST
 
 
+START_TEST(whenCalcIsAddingLXXIVandXXVII)
+{
+    Kata *k;
+    k = kata_init_values("LXXIV", "XXVII");
+    ck_assert_str_eq(kata_add(k), "CI");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingCCandCC)
+{
+    Kata *k;
+    k = kata_init_values("CC", "CC");
+    ck_assert_str_eq(kata_add(k), "CD");
+    kata_free(k);
+}
+END_TEST
+
+
+START_TEST(whenCalcIsAddingCCandDCC)
+{
+    Kata *k;
+    k = kata_init_values("CC", "DCC");
+    ck_assert_str_eq(kata_add(k), "CM");
+    kata_free(k);
+}
+END_TEST
+
+
 Suite * kata_suite(void)
 {
     Suite *s;
@@ -263,31 +293,34 @@ Suite * kata_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_test(tc_core, whenCalcIsAddingIandI);         // I+I        = II
-    tcase_add_test(tc_core, whenCalcIsAddingIandII);        // I+II       = III
-    tcase_add_test(tc_core, whenCalcIsAddingIIandII);       // II+II      = IV
-    tcase_add_test(tc_core, whenCalcIsAddingIandIII);       // I+III      = IV
-    tcase_add_test(tc_core, whenCalcIsAddingIIandIII);      // II+III     = V
-    tcase_add_test(tc_core, whenCalcIsAddingIIIandIII);     // III+III    = VI
-    tcase_add_test(tc_core, whenCalcIsAddingVandI);         // V+I        = VI
-    tcase_add_test(tc_core, whenCalcIsAddingIandV);         // I+V        = VI
-    tcase_add_test(tc_core, whenCalcIsAddingIIandV);        // II+V       = VII
-    tcase_add_test(tc_core, whenCalcIsAddingIVandI);        // IV+I       = V
-    tcase_add_test(tc_core, whenCalcIsAddingIVandIII);      // IV+III     = VII
-    tcase_add_test(tc_core, whenCalcIsAddingIVandIV);       // IV+IV      = VIII
-    tcase_add_test(tc_core, whenCalcIsAddingIVandV);        // IV+V       = IX
-    tcase_add_test(tc_core, whenCalcIsAddingVandV);         // V+V        = X
-    tcase_add_test(tc_core, whenCalcIsAddingVIandVI);       // VI+VI      = XII
-    tcase_add_test(tc_core, whenCalcIsAddingVIIIandVI);     // VIII+VI    = XIV
-    tcase_add_test(tc_core, whenCalcIsAddingVIIIandVIII);   // VIII+VIII  = XVI
-    tcase_add_test(tc_core, whenCalcIsAddingVIIIandIX);     // VIII+IX    = XVII
-    tcase_add_test(tc_core, whenCalcIsAddingIXandIX);       // IX+IX      = XVIII
-    tcase_add_test(tc_core, whenCalcIsAddingXandIX);        // X+IX       = XIX
-    tcase_add_test(tc_core, whenCalcIsAddingXandX);         // X+X        = XX
-    tcase_add_test(tc_core, whenCalcIsAddingXIVandXVII);    // XIV+XVII   = XXXI
-    tcase_add_test(tc_core, whenCalcIsAddingXXandXXX);      // XX+XXX     = L
-    tcase_add_test(tc_core, whenCalcIsAddingXXandXX);       // XX+XX      = XL
-    tcase_add_test(tc_core, whenCalcIsAddingLXXandXX);      // LXX+XX     = XC
+    tcase_add_test(tc_core, whenCalcIsAddingIandI);              // I+I             = II
+    tcase_add_test(tc_core, whenCalcIsAddingIandII);             // I+II            = III
+    tcase_add_test(tc_core, whenCalcIsAddingIIandII);            // II+II           = IV
+    tcase_add_test(tc_core, whenCalcIsAddingIandIII);            // I+III           = IV
+    tcase_add_test(tc_core, whenCalcIsAddingIIandIII);           // II+III          = V
+    tcase_add_test(tc_core, whenCalcIsAddingIIIandIII);          // III+III         = VI
+    tcase_add_test(tc_core, whenCalcIsAddingVandI);              // V+I             = VI
+    tcase_add_test(tc_core, whenCalcIsAddingIandV);              // I+V             = VI
+    tcase_add_test(tc_core, whenCalcIsAddingIIandV);             // II+V            = VII
+    tcase_add_test(tc_core, whenCalcIsAddingIVandI);             // IV+I            = V
+    tcase_add_test(tc_core, whenCalcIsAddingIVandIII);           // IV+III          = VII
+    tcase_add_test(tc_core, whenCalcIsAddingIVandIV);            // IV+IV           = VIII
+    tcase_add_test(tc_core, whenCalcIsAddingIVandV);             // IV+V            = IX
+    tcase_add_test(tc_core, whenCalcIsAddingVandV);              // V+V             = X
+    tcase_add_test(tc_core, whenCalcIsAddingVIandVI);            // VI+VI           = XII
+    tcase_add_test(tc_core, whenCalcIsAddingVIIIandVI);          // VIII+VI         = XIV
+    tcase_add_test(tc_core, whenCalcIsAddingVIIIandVIII);        // VIII+VIII       = XVI
+    tcase_add_test(tc_core, whenCalcIsAddingVIIIandIX);          // VIII+IX         = XVII
+    tcase_add_test(tc_core, whenCalcIsAddingIXandIX);            // IX+IX           = XVIII
+    tcase_add_test(tc_core, whenCalcIsAddingXandIX);             // X+IX            = XIX
+    tcase_add_test(tc_core, whenCalcIsAddingXandX);              // X+X             = XX
+    tcase_add_test(tc_core, whenCalcIsAddingXIVandXVII);         // XIV+XVII        = XXXI
+    tcase_add_test(tc_core, whenCalcIsAddingXXandXXX);           // XX+XXX          = L
+    tcase_add_test(tc_core, whenCalcIsAddingXXandXX);            // XX+XX           = XL
+    tcase_add_test(tc_core, whenCalcIsAddingLXXandXX);           // LXX+XX          = XC
+    tcase_add_test(tc_core, whenCalcIsAddingLXXIVandXXVII);      // LXXIV+XXVII     = CI
+    tcase_add_test(tc_core, whenCalcIsAddingCCandCC);            // CC+CC           = CD
+    tcase_add_test(tc_core, whenCalcIsAddingCCandDCC);           // CC+DCC          = CM
     suite_add_tcase(s, tc_core);
 
     return s;
