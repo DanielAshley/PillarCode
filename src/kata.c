@@ -211,12 +211,55 @@ char *kata_arrang_concatenated_input(Kata * k)
 
 
 
+char *kata_search_and_remove(char * inputVal, char removeVal)
+{
+    char * outArray = malloc(20);
+    char * pch = malloc(20);
+
+    outArray[0] = '\0';
+
+    pch=strchr(inputVal,removeVal);
+    strcat(outArray, pch+1);
+    //printf("HERE-SR  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+    return outArray;
+}
+
+
 char *kata_remove_like_values(Kata * k)
 {
-    char * outArray = malloc(strlen(k->outputArray));
-   outArray = "I";
+//    char * outArray = malloc(strlen(k->outputArray));
+//    outArray = "I";
+    char * tempVal1 = k->val1;
+    char * tempVal2 = k->val2;
 
-    return outArray;
+    int pos_count = 0;
+    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+    {
+	    //printf("HERE0  -  tempVal2[pos_count]: %c    strlen(tempVal2): %d\n", tempVal2[pos_count-1], strlen(tempVal2) );
+        if(tempVal2[pos_count-1] == 'I')
+        {
+	    //printf("HERE1\n");
+            tempVal2 = kata_search_and_remove(tempVal2, 'I');
+            //tempVal2 = "";
+	    //printf("HERE11  -  tempVal2: %s\n", tempVal2);
+
+            for(pos_count = strlen(tempVal1); pos_count > 0; pos_count--)
+            {
+                //printf("HERE2  -  tempVal1[pos_count]: %c    strlen(tempVal2): %d\n", tempVal1[pos_count-1], strlen(tempVal1) );
+                if(tempVal1[pos_count-1] == 'I')
+                {
+         	    //printf("HERE3\n");            
+                    tempVal1 = kata_search_and_remove(tempVal1, 'I');
+                    pos_count = 0;
+         	    //printf("HERE4  -  tempVal1: %s\n", tempVal1);
+                    //tempVal1[pos_count] = '\0';
+                }
+            }
+        }
+    }
+
+    //printf("tempVal1: %s    tempVal2: %s\n", tempVal1, tempVal2);
+    return tempVal1;
 }
 
 char *kata_add(Kata * k)

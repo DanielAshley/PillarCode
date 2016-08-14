@@ -23,7 +23,6 @@ START_TEST(whenCalcIsAddingIandII)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIIandII)
 {
     Kata *k;
@@ -32,7 +31,6 @@ START_TEST(whenCalcIsAddingIIandII)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingIandIII)
 {
@@ -43,7 +41,6 @@ START_TEST(whenCalcIsAddingIandIII)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIIandIII)
 {
     Kata *k;
@@ -52,7 +49,6 @@ START_TEST(whenCalcIsAddingIIandIII)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingIIIandIII)
 {
@@ -63,7 +59,6 @@ START_TEST(whenCalcIsAddingIIIandIII)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingVandI)
 {
     Kata *k;
@@ -72,7 +67,6 @@ START_TEST(whenCalcIsAddingVandI)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingIandV)
 {
@@ -83,7 +77,6 @@ START_TEST(whenCalcIsAddingIandV)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIIandV)
 {
     Kata *k;
@@ -92,7 +85,6 @@ START_TEST(whenCalcIsAddingIIandV)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingIVandI)
 {
@@ -103,7 +95,6 @@ START_TEST(whenCalcIsAddingIVandI)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIVandIII)
 {
     Kata *k;
@@ -112,7 +103,6 @@ START_TEST(whenCalcIsAddingIVandIII)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingIVandIV)
 {
@@ -123,7 +113,6 @@ START_TEST(whenCalcIsAddingIVandIV)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIVandV)
 {
     Kata *k;
@@ -132,7 +121,6 @@ START_TEST(whenCalcIsAddingIVandV)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingVandV)
 {
@@ -143,7 +131,6 @@ START_TEST(whenCalcIsAddingVandV)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingVIandVI)
 {
     Kata *k;
@@ -152,7 +139,6 @@ START_TEST(whenCalcIsAddingVIandVI)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingVIIIandVI)
 {
@@ -163,7 +149,6 @@ START_TEST(whenCalcIsAddingVIIIandVI)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingVIIIandVIII)
 {
     Kata *k;
@@ -172,7 +157,6 @@ START_TEST(whenCalcIsAddingVIIIandVIII)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingVIIIandIX)
 {
@@ -183,7 +167,6 @@ START_TEST(whenCalcIsAddingVIIIandIX)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingIXandIX)
 {
     Kata *k;
@@ -192,7 +175,6 @@ START_TEST(whenCalcIsAddingIXandIX)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingXandIX)
 {
@@ -203,7 +185,6 @@ START_TEST(whenCalcIsAddingXandIX)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingXandX)
 {
     Kata *k;
@@ -212,7 +193,6 @@ START_TEST(whenCalcIsAddingXandX)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingXIVandXVII)
 {
@@ -223,7 +203,6 @@ START_TEST(whenCalcIsAddingXIVandXVII)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingXXandXXX)
 {
     Kata *k;
@@ -232,7 +211,6 @@ START_TEST(whenCalcIsAddingXXandXXX)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingXXandXX)
 {
@@ -243,7 +221,6 @@ START_TEST(whenCalcIsAddingXXandXX)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingLXXandXX)
 {
     Kata *k;
@@ -252,7 +229,6 @@ START_TEST(whenCalcIsAddingLXXandXX)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingLXXIVandXXVII)
 {
@@ -263,7 +239,6 @@ START_TEST(whenCalcIsAddingLXXIVandXXVII)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingCCandCC)
 {
     Kata *k;
@@ -272,7 +247,6 @@ START_TEST(whenCalcIsAddingCCandCC)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingCCandDCC)
 {
@@ -283,7 +257,6 @@ START_TEST(whenCalcIsAddingCCandDCC)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingMMDCCLXVandMCCXXXIV)
 {
     Kata *k;
@@ -293,7 +266,6 @@ START_TEST(whenCalcIsAddingMMDCCLXVandMCCXXXIV)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsAddingMCCXXXIVandMCCXXXIV)
 {
     Kata *k;
@@ -302,7 +274,6 @@ START_TEST(whenCalcIsAddingMCCXXXIVandMCCXXXIV)
     kata_free(k);
 }
 END_TEST
-
 
 START_TEST(whenCalcIsAddingMMMCMXCVIIIandI)
 {
@@ -321,6 +292,15 @@ START_TEST(whenCalcIsSubtractingIIandI)
     Kata *k;
     k = kata_init_values("II", "I");
     ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingIIIandI)
+{
+    Kata *k;
+    k = kata_init_values("III", "I");
+    ck_assert_str_eq(kata_sub(k), "II");
     kata_free(k);
 }
 END_TEST
@@ -373,6 +353,7 @@ Suite * kata_suite(void)
 
     //SUBTRACTION TESTS
     tcase_add_test(tc_core, whenCalcIsSubtractingIIandI);        // II+I            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingIIIandI);       // III+I           = II
 
     suite_add_tcase(s, tc_core);
 
