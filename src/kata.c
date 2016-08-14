@@ -83,7 +83,8 @@ char *kata_substitute_subtractives_back(char * inputArray)
 {
     char *savedEnding = malloc(strlen(inputArray));
     
-    savedEnding = kata_check_special_case(inputArray, "VIIII", "IX");
+    savedEnding = kata_check_special_case(inputArray, "XXXX", "XL");
+    savedEnding = kata_check_special_case(savedEnding, "VIIII", "IX");
     savedEnding = kata_check_special_case(savedEnding, "IIII", "IV");
     
     //printf("Substitute Subtractives Back -  inputArray: %s    savedEnding: %s\n", inputArray, savedEnding);
@@ -133,6 +134,7 @@ char *kata_substitute_subtractives(char * val)
     char *savedEnding = malloc(strlen(val));
     savedEnding = kata_check_subtractives(val, "IV", "IIII");
     savedEnding = kata_check_subtractives(savedEnding, "IX", "VIIII");
+    savedEnding = kata_check_subtractives(savedEnding, "XL", "XXXX");
 
 
     if(strcmp(val,savedEnding) == 0)
