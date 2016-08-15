@@ -443,6 +443,66 @@ START_TEST(whenCalcIsSubtractingLandX)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingLandXLIX)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("L", "XLIX");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingLIandXLIX)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("LI", "XLIX");
+    ck_assert_str_eq(kata_sub(k), "II");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingCandI)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("C", "I");
+    ck_assert_str_eq(kata_sub(k), "XCIX");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingCandV)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("C", "V");
+    ck_assert_str_eq(kata_sub(k), "XCV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingCandLXVI)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("C", "LXVI");
+    ck_assert_str_eq(kata_sub(k), "XXXIV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingCIandC)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("CI", "C");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -503,9 +563,15 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXV);    // XXXII-XV        = XVII
     tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXVIII); // XXXII-XVIII     = XIV
     tcase_add_test(tc_core, whenCalcIsSubtractingXandIX);        // X-IX            = I
-    tcase_add_test(tc_core, whenCalcIsSubtractingLandI);         // L-I              = XLIX
-    tcase_add_test(tc_core, whenCalcIsSubtractingLandV);         // L-V              = XLV
-    tcase_add_test(tc_core, whenCalcIsSubtractingLandX);         // L-X              = XL
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandI);         // L-I             = XLIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandV);         // L-V             = XLV
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandX);         // L-X             = XL
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandXLIX);      // L-XLIX          = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingLIandXLIX);     // LI-XLIX         = II
+    tcase_add_test(tc_core, whenCalcIsSubtractingCandI);         // C-I             = XCIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingCandV);         // C-V             = XCV
+    tcase_add_test(tc_core, whenCalcIsSubtractingCandLXVI);      // C-LXVI          = XXXIV
+    tcase_add_test(tc_core, whenCalcIsSubtractingCIandC);        // CI-C            = I
 
     suite_add_tcase(s, tc_core);
 
