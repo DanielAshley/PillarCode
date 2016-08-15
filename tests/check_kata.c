@@ -612,6 +612,42 @@ START_TEST(whenCalcIsAddingMMDCCLXVandMCCXXXV)
 }
 END_TEST
 
+START_TEST(whenCalcIsAddingMMMMandI)
+{
+    Kata *k;
+    k = kata_init_values("MMMM", "I");
+    ck_assert_str_eq(kata_add(k), ""); // Error: input value is higher than max value (3999)
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsAddingIandMMMM)
+{
+    Kata *k;
+    k = kata_init_values("I", "MMMM");
+    ck_assert_str_eq(kata_add(k), ""); // Error: input value is higher than max value (3999)
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingMMMMandI)
+{
+    Kata *k;
+    k = kata_init_values("MMMM", "I");
+    ck_assert_str_eq(kata_sub(k), ""); // Error: input value is higher than max value (3999)
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingIandMMMM)
+{
+    Kata *k;
+    k = kata_init_values("I", "MMMM");
+    ck_assert_str_eq(kata_sub(k), ""); // Error: input value is higher than max value (3999)
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -691,13 +727,16 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingMandDCLXVI);    // M-DCLXVI        = CCCXXXIV
     tcase_add_test(tc_core, whenCalcIsSubtractingMIandM);        // MI-M            = I
     tcase_add_test(tc_core, whenCalcIsSubtractingCCCXLIIandCCLXXI);    // CCCXLII-CCLXXI       = LXXI
-    tcase_add_test(tc_core, whenCalcIsSubtractingMMMMDCCXXandDXCIX);   // MMMMDCCXX-DXCIX      = MMMMCXXI
     tcase_add_test(tc_core, whenCalcIsSubtractingMCCXXXVandMCCXXXIV);  // MCCXXXV-MCCXXXIV     = I
 
     //SUBTRACTION TESTS
     tcase_add_test(tc_core, whenCalcIsSubtractingIandII);        // I-II                       = ""
     tcase_add_test(tc_core, whenCalcIsSubtractingIandI);         // I-I                        = ""
     tcase_add_test(tc_core, whenCalcIsAddingMMDCCLXVandMCCXXXV); // MMDCCLXV+MCCXXXV           = ""
+    tcase_add_test(tc_core, whenCalcIsAddingMMMMandI);           // MMMM-I                     = ""
+    tcase_add_test(tc_core, whenCalcIsAddingIandMMMM);           // I-MMMM                     = ""
+    tcase_add_test(tc_core, whenCalcIsSubtractingMMMMandI);      // MMMM-I                     = ""
+    tcase_add_test(tc_core, whenCalcIsSubtractingIandMMMM);      // MMMM-I                     = ""
 
     suite_add_tcase(s, tc_core);
 

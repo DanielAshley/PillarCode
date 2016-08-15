@@ -654,7 +654,7 @@ char *kata_check_if_value_is_greater_than_max(char * val, char * max)
     char * savedValue = malloc(20);
 
     test_Kata = kata_init_values(max, val);
-    savedValue = kata_sub(test_Kata);
+    savedValue = kata_sub_checker(test_Kata);
     kata_free(test_Kata);
 
     return savedValue;
@@ -680,6 +680,26 @@ char *kata_add(Kata * k)
 }
 
 char *kata_sub(Kata * k)
+{
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, k->maxValue),"") == 0)
+        return "";
+
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, k->maxValue),"") == 0)
+        return "";    
+
+    k->val1 = kata_substitute_subtractives(k->val1);
+    k->val2 = kata_substitute_subtractives(k->val2);
+    k->outputArray = kata_remove_like_values(k->val1, k->val2);
+    k->outputArray = kata_arrang_concatenated_input(k->outputArray, "");
+    k->outputArray = kata_convert_low_to_high(k->outputArray);
+    k->outputArray = kata_substitute_subtractives_back(k->outputArray);
+
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->outputArray, k->maxValue),"") == 0)
+        return "";
+    return k->outputArray;
+}
+
+char *kata_sub_checker(Kata * k)
 {
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
