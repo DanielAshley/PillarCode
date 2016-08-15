@@ -335,21 +335,15 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
             pch=strchr(inputVal,'L');
             if(pch==NULL)
             {
-                pch=strchr(inputVal,'C');
-                if(pch==NULL)
-                {
-                        
-                }
-                else
-                    memmove(outArray+strlen(outArray)-1, "IIII", 5);
+                       
             }
             else
-            {
-                pos = strlen(outArray)-strlen(pch);
-                memmove(outArray+pos, "VV", 10);
+            { 
+                 pos = strlen(outArray)-strlen(pch);
+                memmove(outArray+pos, "XXXXX", 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
-                memmove(outArray+pos+2, pch+1, 10);
-                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                memmove(outArray+pos+5, pch+1, 10);
+                //printf("HERE-SR-val1 - L -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
             }
         }
         else
