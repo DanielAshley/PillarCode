@@ -215,12 +215,15 @@ char *kata_search_and_remove_val2(char * inputVal, char removeVal)
 {
     char * outArray = malloc(20);
     char * pch = malloc(20);
+    int pos = 0;
 
-    outArray[0] = '\0';
+    strcpy(outArray,inputVal);
 
     pch=strchr(inputVal,removeVal);
-    strcat(outArray, pch+1);
-    //printf("HERE-SR  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+    pos = strlen(outArray)-strlen(pch);
+    memmove(outArray+pos, pch+1, 10);
+    //printf("HERE-SR-val2  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+
     return outArray;
 }
 
@@ -230,11 +233,6 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
     char * pch = malloc(20);
     strcpy(outArray, inputVal);
     int pos = 0;
-//  char str[] = "memmove can be very useful.";
-//  memmove (str+(strlen(str)-1), str+(strlen(str)), 1);
-//  puts (str);
-
-    //outArray[0] = '\0';
 
     if(removeVal == 'I')
     {
@@ -251,16 +249,16 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 }
                 else
                     memmove(outArray+strlen(outArray)-1, "VIIII", 6);
-                    //strcat(outArray, "VIIII");
             }
             else
                 memmove(outArray+strlen(outArray)-1, "IIII", 5);
-                //strcat(outArray, "IIII");
         }
         else
-            memmove(outArray+strlen(outArray)-strlen(pch), pch+1, strlen(pch)+1);
-            //strcat(outArray, pch+1);
-    //printf("HERE-SR-val1  -  inputVal: %s    strlen(inputVal): %d    outArray: %s\n", inputVal, strlen(inputVal), outArray);
+        {
+            pos = strlen(outArray)-strlen(pch);
+            memmove(outArray+pos, pch+1, 10);
+            //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+        }
     }
 
     if(removeVal == 'V')
@@ -278,7 +276,6 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 }
                 else
                     memmove(outArray+strlen(outArray)-1, "IIII", 5);
-                    //strcat(outArray, "VIIII");
             }
             else
             {
@@ -287,21 +284,55 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
                 memmove(outArray+pos+1, pch+1, 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
-                //strcat(outArray, "IIII");
             }
         }
         else
-            memmove(outArray+strlen(outArray)-strlen(pch), pch+1, strlen(pch)+1);
-            //strcat(outArray, pch+1);
+        {
+            pos = strlen(outArray)-strlen(pch);
+            memmove(outArray+pos, pch+1, 10);
+            //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+        }
     }
+
+    if(removeVal == 'X')
+    {
+        pch=strchr(inputVal,removeVal);
+        if(pch==NULL)
+        {
+            pch=strchr(inputVal,'L');
+            if(pch==NULL)
+            {
+                pch=strchr(inputVal,'C');
+                if(pch==NULL)
+                {
+                        
+                }
+                else
+                    memmove(outArray+strlen(outArray)-1, "IIII", 5);
+            }
+            else
+            {
+                pos = strlen(outArray)-strlen(pch);
+                memmove(outArray+pos, "V", 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                memmove(outArray+pos+1, pch+1, 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+            }
+        }
+        else
+        {
+            pos = strlen(outArray)-strlen(pch);
+            memmove(outArray+pos, pch+1, 10);
+            //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+        }
+    }
+
     return outArray;
 }
 
 
 char *kata_remove_like_values(char * val1, char * val2)
 {
-//    char * outArray = malloc(strlen(k->outputArray));
-//    outArray = "I";
     char * tempVal1 = malloc(20);
     char * tempVal2 = malloc(20);
 
@@ -335,9 +366,27 @@ char *kata_remove_like_values(char * val1, char * val2)
         }
     }
 
+    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+    {
+	if(tempVal2[pos_count-1] == 'X')
+        {
+            //printf("HERE0  -  tempVal2[pos_count-1]: %c    strlen(tempVal2): %d\n", tempVal2[pos_count-1], strlen(tempVal2) );
+        
+	    //printf("HERE1\n");
+            tempVal2 = kata_search_and_remove_val2(tempVal2, 'X');
+            tempVal1 = kata_search_and_remove_val1(tempVal1, 'X');
+            pos_count = 0;
+     	    //printf("HERE4  -  tempVal1: %s\n", tempVal1);
+        }
+    }
+
     //printf("tempVal1: %s    tempVal2: %s\n", tempVal1, tempVal2);
     if(strlen(tempVal2) != 0)
+    {
+        tempVal1 = kata_arrang_concatenated_input(tempVal1, "");
+        tempVal1 = kata_convert_low_to_high(tempVal1);
         return kata_remove_like_values(tempVal1, tempVal2);
+    }
     else
         return tempVal1;
 }
@@ -356,15 +405,8 @@ char *kata_sub(Kata * k)
 {
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
-
-//printf("val1: %s    val2: %s\n", k->val1, k->val2);
-
     k->outputArray = kata_remove_like_values(k->val1, k->val2);
-
     k->outputArray = kata_arrang_concatenated_input(k->outputArray, "");
-
-//printf("outputArray: %s\n", k->outputArray);
-
     k->outputArray = kata_convert_low_to_high(k->outputArray);
     k->outputArray = kata_substitute_subtractives_back(k->outputArray);
     return k->outputArray;
