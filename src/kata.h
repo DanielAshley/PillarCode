@@ -15,6 +15,7 @@ char *kata_arrang_concatenated_input(char * val1, char * val2);
 char *kata_search_and_remove_val1(char * inputVal, char removeVal);
 char *kata_search_and_remove_val2(char * inputVal, char removeVal);
 char *kata_remove_like_values(char * val1, char * val2);
+char *kata_check_if_value_is_greater_than_max(char * val, char * max);
 char *kata_add(Kata * k);
 char *kata_sub(Kata * k);
 void kata_free(Kata *k);

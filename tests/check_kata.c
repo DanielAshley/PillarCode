@@ -1,5 +1,3 @@
-
-#include <stdio.h>
 #include <stdlib.h>
 #include <check.h>
 #include "../src/kata.h"
@@ -583,6 +581,20 @@ START_TEST(whenCalcIsSubtractingMCCXXXVandMCCXXXIV)
     kata_free(k);
 }
 END_TEST
+// END OF SUBTRACTION TESTS
+
+
+// BEGINNING OF ERROR CASE TESTS
+START_TEST(whenCalcIsSubtractingIandII)
+{
+    Kata *k;
+    k = kata_init_values("I", "II");
+    ck_assert_str_eq(kata_sub(k), "");
+    kata_free(k);
+}
+END_TEST
+
+
 
 
 
@@ -663,6 +675,9 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingCCCXLIIandCCLXXI);    // CCCXLII-CCLXXI       = LXXI
     tcase_add_test(tc_core, whenCalcIsSubtractingMMMMDCCXXandDXCIX);   // MMMMDCCXX-DXCIX      = MMMMCXXI
     tcase_add_test(tc_core, whenCalcIsSubtractingMCCXXXVandMCCXXXIV);  // MCCXXXV-MCCXXXIV     = I
+
+    //SUBTRACTION TESTS
+    tcase_add_test(tc_core, whenCalcIsSubtractingIandII);        // I-II            = ""
 
     suite_add_tcase(s, tc_core);
 

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "kata.h"
@@ -8,6 +7,8 @@ struct Kata
     char *val1;
     char *val2;
     char *outputArray;
+    char *maxValue;
+    
 };
 
 Kata *kata_init_values(char *val1, char *val2)
@@ -25,6 +26,7 @@ Kata *kata_init_values(char *val1, char *val2)
     k->outputArray[0] = '\0';
     k->val1 = val1;
     k->val2 = val2;
+    k->maxValue = "MMMM"; //"MMMCMXCIX"; // max value + 1
     return k;
 }
 
@@ -254,7 +256,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                                 pch=strchr(inputVal,'M');
                 		if(pch==NULL)
                 		{
-                                    
+                                    return "";   
       			        }
         		        else
          		        { 
@@ -326,7 +328,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                             pch=strchr(inputVal,'M');
                             if(pch==NULL)
                             {            
-                         
+                                return ""; 
                             }
                             else
                             { 
@@ -388,7 +390,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                             pch=strchr(inputVal,'M');
                             if(pch==NULL)
                             {
-                             
+                                return ""; 
                             }
                             else
                             { 
@@ -440,7 +442,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                         pch=strchr(inputVal,'M');
                         if(pch==NULL)
                         {
-                         
+                            return ""; 
                         }
                         else
                         { 
@@ -482,7 +484,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                     pch=strchr(inputVal,'M');
                     if(pch==NULL)
                     {
-                             
+                        return "";         
                     }
                     else
                     { 
@@ -514,7 +516,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 pch=strchr(inputVal,'M');
                 if(pch==NULL)
                 {
-                         
+                    return "";
                 }
                 else
                 { 
@@ -536,7 +538,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
         {
-
+            return "";
         }
         else
         {
@@ -561,94 +563,119 @@ char *kata_remove_like_values(char * val1, char * val2)
     strcpy(tempVal1,val1);
     strcpy(tempVal2,val2);
 
+    int main_count = 0;
     int pos_count = 0;
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-        if(tempVal2[pos_count-1] == 'I')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'I');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'I');
-            pos_count = 0;
-        }
-    }
 
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-        if(tempVal2[pos_count-1] == 'V')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'V');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'V');
-            pos_count = 0;
-        }
-    }
-
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-	if(tempVal2[pos_count-1] == 'X')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'X');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'X');
-            pos_count = 0;
-        }
-    }
-
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-	if(tempVal2[pos_count-1] == 'L')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'L');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'L');
-            pos_count = 0;
-        }
-    }
-
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-	if(tempVal2[pos_count-1] == 'C')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'C');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'C');
-            pos_count = 0;
-        }
-    }
-
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-	if(tempVal2[pos_count-1] == 'D')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'D');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'D');
-            pos_count = 0;
-        }
-    }
-
-    for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
-    {
-	if(tempVal2[pos_count-1] == 'M')
-        {
-            tempVal2 = kata_search_and_remove_val2(tempVal2, 'M');
-            tempVal1 = kata_search_and_remove_val1(tempVal1, 'M');
-            pos_count = 0;
-        }
-    }
-
-    if(strlen(tempVal2) != 0)
+    for(main_count = 0; main_count < 10; main_count++)
     {
         tempVal1 = kata_arrang_concatenated_input(tempVal1, "");
         tempVal1 = kata_convert_low_to_high(tempVal1);
-        return kata_remove_like_values(tempVal1, tempVal2);
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+            if(tempVal2[pos_count-1] == 'I')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'I');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'I');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+            if(tempVal2[pos_count-1] == 'V')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'V');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'V');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+	    if(tempVal2[pos_count-1] == 'X')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'X');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'X');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+            if(tempVal2[pos_count-1] == 'L')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'L');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'L');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+            if(tempVal2[pos_count-1] == 'C')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'C');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'C');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+	    if(tempVal2[pos_count-1] == 'D')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'D');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'D');
+                pos_count = strlen(tempVal2);
+            }
+        }
+
+        for(pos_count = strlen(tempVal2); pos_count > 0; pos_count--)
+        {
+	    if(tempVal2[pos_count-1] == 'M')
+            {
+                tempVal2 = kata_search_and_remove_val2(tempVal2, 'M');
+                tempVal1 = kata_search_and_remove_val1(tempVal1, 'M');
+                pos_count = strlen(tempVal2);
+            }
+        }
+    }
+    if(strlen(tempVal2) != 0)
+    {
+        return "";
     }
     else
         return tempVal1;
 }
 
+char *kata_check_if_value_is_greater_than_max(char * val, char * max)
+{
+    Kata * test_Kata = malloc(sizeof(Kata));
+    char * savedValue = malloc(20);
+
+    test_Kata = kata_init_values(max, val);
+    savedValue = kata_sub(test_Kata);
+    kata_free(test_Kata);
+
+    return savedValue;
+}
+
 char *kata_add(Kata * k)
 {
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, k->maxValue),"") == 0)
+        return "";
+
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, k->maxValue),"") == 0)
+        return "";    
+
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
     k->outputArray = kata_arrang_concatenated_input(k->val1, k->val2);
     k->outputArray = kata_convert_low_to_high(k->outputArray);
     k->outputArray = kata_substitute_subtractives_back(k->outputArray);
+
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->outputArray, k->maxValue),"") == 0)
+        return "";
     return k->outputArray;
 }
 
