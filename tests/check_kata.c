@@ -503,6 +503,45 @@ START_TEST(whenCalcIsSubtractingCIandC)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingDandI)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("D", "I");
+    ck_assert_str_eq(kata_sub(k), "CDXCIX");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingDandV)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("D", "V");
+    ck_assert_str_eq(kata_sub(k), "CDXCV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingDandCLXVI)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("D", "CLXVI");
+    ck_assert_str_eq(kata_sub(k), "CCCXXXIV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingDIandD)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("DI", "D");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
 
 
 
@@ -572,6 +611,10 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingCandV);         // C-V             = XCV
     tcase_add_test(tc_core, whenCalcIsSubtractingCandLXVI);      // C-LXVI          = XXXIV
     tcase_add_test(tc_core, whenCalcIsSubtractingCIandC);        // CI-C            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingDandI);         // D-I             = CDXCIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingDandV);         // D-V             = CDXCV
+    tcase_add_test(tc_core, whenCalcIsSubtractingDandCLXVI);     // D-CLXVI         = CCCXXXIV
+    tcase_add_test(tc_core, whenCalcIsSubtractingDIandD);        // DI-D            = I
 
     suite_add_tcase(s, tc_core);
 
