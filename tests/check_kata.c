@@ -589,7 +589,25 @@ START_TEST(whenCalcIsSubtractingIandII)
 {
     Kata *k;
     k = kata_init_values("I", "II");
-    ck_assert_str_eq(kata_sub(k), "");
+    ck_assert_str_eq(kata_sub(k), ""); // Error: output would be less than 1
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingIandI)
+{
+    Kata *k;
+    k = kata_init_values("I", "I");
+    ck_assert_str_eq(kata_sub(k), ""); // Error: output would be less than 1
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsAddingMMDCCLXVandMCCXXXV)
+{
+    Kata *k;
+    k = kata_init_values("MMDCCLXV", "MCCXXXV");
+    ck_assert_str_eq(kata_add(k), ""); // Error: output would be higher than max value (3999)
     kata_free(k);
 }
 END_TEST
@@ -677,7 +695,9 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingMCCXXXVandMCCXXXIV);  // MCCXXXV-MCCXXXIV     = I
 
     //SUBTRACTION TESTS
-    tcase_add_test(tc_core, whenCalcIsSubtractingIandII);        // I-II            = ""
+    tcase_add_test(tc_core, whenCalcIsSubtractingIandII);        // I-II                       = ""
+    tcase_add_test(tc_core, whenCalcIsSubtractingIandI);         // I-I                        = ""
+    tcase_add_test(tc_core, whenCalcIsAddingMMDCCLXVandMCCXXXV); // MMDCCLXV+MCCXXXV           = ""
 
     suite_add_tcase(s, tc_core);
 
