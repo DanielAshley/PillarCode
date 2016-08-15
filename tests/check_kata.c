@@ -423,6 +423,16 @@ START_TEST(whenCalcIsSubtractingLandI)
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingLandV)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("L", "V");
+    ck_assert_str_eq(kata_sub(k), "XLV");
+    kata_free(k);
+}
+END_TEST
+
 
 
 
@@ -483,7 +493,8 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXV);    // XXXII-XV        = XVII
     tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXVIII); // XXXII-XVIII     = XIV
     tcase_add_test(tc_core, whenCalcIsSubtractingXandIX);        // X-IX            = I
-    tcase_add_test(tc_core, whenCalcIsSubtractingLandI);        // L-I              = XLIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandI);         // L-I              = XLIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandV);         // L-V              = XLV
 
     suite_add_tcase(s, tc_core);
 
