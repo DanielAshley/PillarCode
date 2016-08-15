@@ -575,7 +575,15 @@ START_TEST(whenCalcIsSubtractingMMMMDCCXXandDXCIX)
 }
 END_TEST
 
-//4720 599
+START_TEST(whenCalcIsSubtractingMCCXXXVandMCCXXXIV)
+{
+    Kata *k;
+    k = kata_init_values("MCCXXXV", "MCCXXXIV");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
 
 
 Suite * kata_suite(void)
@@ -652,8 +660,9 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingMandV);         // M-V             = CMXCV
     tcase_add_test(tc_core, whenCalcIsSubtractingMandDCLXVI);    // M-DCLXVI        = CCCXXXIV
     tcase_add_test(tc_core, whenCalcIsSubtractingMIandM);        // MI-M            = I
-    tcase_add_test(tc_core, whenCalcIsSubtractingCCCXLIIandCCLXXI);   // CCCXLII-CCLXXI       = LXXI
-    tcase_add_test(tc_core, whenCalcIsSubtractingMMMMDCCXXandDXCIX);  // MMMMDCCXX-DXCIX      = MMMMCXXI
+    tcase_add_test(tc_core, whenCalcIsSubtractingCCCXLIIandCCLXXI);    // CCCXLII-CCLXXI       = LXXI
+    tcase_add_test(tc_core, whenCalcIsSubtractingMMMMDCCXXandDXCIX);   // MMMMDCCXX-DXCIX      = MMMMCXXI
+    tcase_add_test(tc_core, whenCalcIsSubtractingMCCXXXVandMCCXXXIV);  // MCCXXXV-MCCXXXIV     = I
 
     suite_add_tcase(s, tc_core);
 
