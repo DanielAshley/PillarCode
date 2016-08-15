@@ -326,7 +326,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingVIIandIV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("VII", "IV");
     ck_assert_str_eq(kata_sub(k), "III");
     kata_free(k);
@@ -336,7 +335,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingVIIIandIV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("VIII", "IV");
     ck_assert_str_eq(kata_sub(k), "IV");
     kata_free(k);
@@ -346,7 +344,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingVIIIandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("VIII", "V");
     ck_assert_str_eq(kata_sub(k), "III");
     kata_free(k);
@@ -356,7 +353,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXandI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("X", "I");
     ck_assert_str_eq(kata_sub(k), "IX");
     kata_free(k);
@@ -366,7 +362,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXIIandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("XII", "V");
     ck_assert_str_eq(kata_sub(k), "VII");
     kata_free(k);
@@ -376,7 +371,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXXXIIandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("XXXII", "V");
     ck_assert_str_eq(kata_sub(k), "XXVII");
     kata_free(k);
@@ -386,7 +380,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXXXIIandXV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("XXXII", "XV");
     ck_assert_str_eq(kata_sub(k), "XVII");
     kata_free(k);
@@ -396,7 +389,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXXXIIandXVIII)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("XXXII", "XVIII");
     ck_assert_str_eq(kata_sub(k), "XIV");
     kata_free(k);
@@ -406,7 +398,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingXandIX)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("X", "IX");
     ck_assert_str_eq(kata_sub(k), "I");
     kata_free(k);
@@ -416,7 +407,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingLandI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("L", "I");
     ck_assert_str_eq(kata_sub(k), "XLIX");
     kata_free(k);
@@ -426,7 +416,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingLandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("L", "V");
     ck_assert_str_eq(kata_sub(k), "XLV");
     kata_free(k);
@@ -436,7 +425,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingLandX)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("L", "X");
     ck_assert_str_eq(kata_sub(k), "XL");
     kata_free(k);
@@ -446,7 +434,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingLandXLIX)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("L", "XLIX");
     ck_assert_str_eq(kata_sub(k), "I");
     kata_free(k);
@@ -456,7 +443,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingLIandXLIX)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("LI", "XLIX");
     ck_assert_str_eq(kata_sub(k), "II");
     kata_free(k);
@@ -466,7 +452,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingCandI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("C", "I");
     ck_assert_str_eq(kata_sub(k), "XCIX");
     kata_free(k);
@@ -476,7 +461,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingCandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("C", "V");
     ck_assert_str_eq(kata_sub(k), "XCV");
     kata_free(k);
@@ -486,7 +470,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingCandLXVI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("C", "LXVI");
     ck_assert_str_eq(kata_sub(k), "XXXIV");
     kata_free(k);
@@ -496,7 +479,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingCIandC)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("CI", "C");
     ck_assert_str_eq(kata_sub(k), "I");
     kata_free(k);
@@ -506,7 +488,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingDandI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("D", "I");
     ck_assert_str_eq(kata_sub(k), "CDXCIX");
     kata_free(k);
@@ -516,7 +497,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingDandV)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("D", "V");
     ck_assert_str_eq(kata_sub(k), "CDXCV");
     kata_free(k);
@@ -526,7 +506,6 @@ END_TEST
 START_TEST(whenCalcIsSubtractingDandCLXVI)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("D", "CLXVI");
     ck_assert_str_eq(kata_sub(k), "CCCXXXIV");
     kata_free(k);
@@ -536,13 +515,67 @@ END_TEST
 START_TEST(whenCalcIsSubtractingDIandD)
 {
     Kata *k;
-    //printf("Init\n");
     k = kata_init_values("DI", "D");
     ck_assert_str_eq(kata_sub(k), "I");
     kata_free(k);
 }
 END_TEST
 
+START_TEST(whenCalcIsSubtractingMandI)
+{
+    Kata *k;
+    k = kata_init_values("M", "I");
+    ck_assert_str_eq(kata_sub(k), "CMXCIX");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingMandV)
+{
+    Kata *k;
+    k = kata_init_values("M", "V");
+    ck_assert_str_eq(kata_sub(k), "CMXCV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingMandDCLXVI)
+{
+    Kata *k;
+    k = kata_init_values("M", "DCLXVI");
+    ck_assert_str_eq(kata_sub(k), "CCCXXXIV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingMIandM)
+{
+    Kata *k;
+    k = kata_init_values("MI", "M");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingCCCXLIIandCCLXXI)
+{
+    Kata *k;
+    k = kata_init_values("CCCXLII", "CCLXXI");
+    ck_assert_str_eq(kata_sub(k), "LXXI");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingMMMMDCCXXandDXCIX)
+{
+    Kata *k;
+    k = kata_init_values("MMMMDCCXX", "DXCIX");
+    ck_assert_str_eq(kata_sub(k), "MMMMCXXI");
+    kata_free(k);
+}
+END_TEST
+
+//4720 599
 
 
 Suite * kata_suite(void)
@@ -615,6 +648,12 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingDandV);         // D-V             = CDXCV
     tcase_add_test(tc_core, whenCalcIsSubtractingDandCLXVI);     // D-CLXVI         = CCCXXXIV
     tcase_add_test(tc_core, whenCalcIsSubtractingDIandD);        // DI-D            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingMandI);         // M-I             = CMXCIX
+    tcase_add_test(tc_core, whenCalcIsSubtractingMandV);         // M-V             = CMXCV
+    tcase_add_test(tc_core, whenCalcIsSubtractingMandDCLXVI);    // M-DCLXVI        = CCCXXXIV
+    tcase_add_test(tc_core, whenCalcIsSubtractingMIandM);        // MI-M            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingCCCXLIIandCCLXXI);   // CCCXLII-CCLXXI       = LXXI
+    tcase_add_test(tc_core, whenCalcIsSubtractingMMMMDCCXXandDXCIX);  // MMMMDCCXX-DXCIX      = MMMMCXXI
 
     suite_add_tcase(s, tc_core);
 

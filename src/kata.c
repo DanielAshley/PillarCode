@@ -251,7 +251,17 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                             pch=strchr(inputVal,'D');
                             if(pch==NULL)
                             {
-                                 
+                                pch=strchr(inputVal,'M');
+                		if(pch==NULL)
+                		{
+                                    
+      			        }
+        		        else
+         		        { 
+        		            pos = strlen(outArray)-strlen(pch);
+         		            memmove(outArray+pos, "DD", 10);
+         		            memmove(outArray+pos+2, pch+1, 20);
+           		        } 
                             }
                             else
                             { 
@@ -313,7 +323,17 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                         pch=strchr(inputVal,'D');
                         if(pch==NULL)
                         {
-                                 
+                            pch=strchr(inputVal,'M');
+                            if(pch==NULL)
+                            {            
+                         
+                            }
+                            else
+                            { 
+                                pos = strlen(outArray)-strlen(pch);
+                                memmove(outArray+pos, "DD", 10);
+                                memmove(outArray+pos+2, pch+1, 20);
+                            }       
                         }
                         else
                         { 
@@ -365,7 +385,17 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                         pch=strchr(inputVal,'D');
                         if(pch==NULL)
                         {
-                                 
+                            pch=strchr(inputVal,'M');
+                            if(pch==NULL)
+                            {
+                             
+                            }
+                            else
+                            { 
+                                pos = strlen(outArray)-strlen(pch);
+                                memmove(outArray+pos, "DD", 10);
+                                memmove(outArray+pos+2, pch+1, 20);
+                            }     
                         }
                         else
                         { 
@@ -407,7 +437,17 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                     pch=strchr(inputVal,'D');
                     if(pch==NULL)
                     {
-                             
+                        pch=strchr(inputVal,'M');
+                        if(pch==NULL)
+                        {
+                         
+                        }
+                        else
+                        { 
+                            pos = strlen(outArray)-strlen(pch);
+                            memmove(outArray+pos, "DD", 10);
+                            memmove(outArray+pos+2, pch+1, 20);
+                        }    
                     }
                     else
                     { 
@@ -439,7 +479,17 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 pch=strchr(inputVal,'D');
                 if(pch==NULL)
                 {
-                         
+                    pch=strchr(inputVal,'M');
+                    if(pch==NULL)
+                    {
+                             
+                    }
+                    else
+                    { 
+                        pos = strlen(outArray)-strlen(pch);
+                        memmove(outArray+pos, "DD", 10);
+                        memmove(outArray+pos+2, pch+1, 20);
+                    }  
                 }
                 else
                 { 
@@ -472,6 +522,21 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                     memmove(outArray+pos, "DD", 10);
                     memmove(outArray+pos+2, pch+1, 20);
                 } 
+        }
+        else
+        {
+            pos = strlen(outArray)-strlen(pch);
+            memmove(outArray+pos, pch+1, 20);
+            removed = 1;
+        }
+    }
+
+    else if(removeVal == 'M')
+    {
+        pch=strchr(inputVal,removeVal);
+        if(pch==NULL)
+        {
+
         }
         else
         {
