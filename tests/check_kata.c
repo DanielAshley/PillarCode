@@ -383,13 +383,42 @@ START_TEST(whenCalcIsSubtractingXXXIIandV)
 }
 END_TEST
 
-
 START_TEST(whenCalcIsSubtractingXXXIIandXV)
 {
     Kata *k;
     //printf("Init\n");
     k = kata_init_values("XXXII", "XV");
     ck_assert_str_eq(kata_sub(k), "XVII");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingXXXIIandXVIII)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("XXXII", "XVIII");
+    ck_assert_str_eq(kata_sub(k), "XIV");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingXandIX)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("X", "IX");
+    ck_assert_str_eq(kata_sub(k), "I");
+    kata_free(k);
+}
+END_TEST
+
+START_TEST(whenCalcIsSubtractingLandI)
+{
+    Kata *k;
+    //printf("Init\n");
+    k = kata_init_values("L", "I");
+    ck_assert_str_eq(kata_sub(k), "XLIX");
     kata_free(k);
 }
 END_TEST
@@ -451,7 +480,10 @@ Suite * kata_suite(void)
     tcase_add_test(tc_core, whenCalcIsSubtractingXandI);         // X-I             = IX
     tcase_add_test(tc_core, whenCalcIsSubtractingXIIandV);       // XII-V           = VII
     tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandV);     // XXXII-V         = XXVII
-    tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXV);     // XXXII-XV         = XVII
+    tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXV);    // XXXII-XV        = XVII
+    tcase_add_test(tc_core, whenCalcIsSubtractingXXXIIandXVIII); // XXXII-XVIII     = XIV
+    tcase_add_test(tc_core, whenCalcIsSubtractingXandIX);        // X-IX            = I
+    tcase_add_test(tc_core, whenCalcIsSubtractingLandI);        // L-I              = XLIX
 
     suite_add_tcase(s, tc_core);
 

@@ -233,6 +233,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
     char * pch = malloc(20);
     strcpy(outArray, inputVal);
     int pos = 0;
+    int removed = 0;
 
     if(removeVal == 'I')
     {
@@ -245,18 +246,43 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
                 pch=strchr(inputVal,'X');
                 if(pch==NULL)
                 {
-                        
+                    pch=strchr(inputVal,'L');
+                    if(pch==NULL)
+                    {
+                            
+                    }
+                    else
+                    { 
+                        pos = strlen(outArray)-strlen(pch);
+                        memmove(outArray+pos, "XXXXX", 10);
+                        //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                        memmove(outArray+pos+5, pch+1, 10);
+                        //printf("HERE-SR-val1 - L -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                    }
                 }
                 else
-                    memmove(outArray+strlen(outArray)-1, "VIIII", 6);
+                { 
+                    pos = strlen(outArray)-strlen(pch);
+                    memmove(outArray+pos, "VV", 10);
+                    //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                    memmove(outArray+pos+2, pch+1, 10);
+                    //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                }
             }
             else
-                memmove(outArray+strlen(outArray)-1, "IIII", 5);
+            { 
+                pos = strlen(outArray)-strlen(pch);
+                memmove(outArray+pos, "IIIII", 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+                memmove(outArray+pos+5, pch+1, 10);
+                //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
+            }
         }
         else
         {
             pos = strlen(outArray)-strlen(pch);
             memmove(outArray+pos, pch+1, 10);
+            removed = 1;
             //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
         }
     }
@@ -280,9 +306,9 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
             else
             {
                 pos = strlen(outArray)-strlen(pch);
-                memmove(outArray+pos, "V", 10);
+                memmove(outArray+pos, "VV", 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
-                memmove(outArray+pos+1, pch+1, 10);
+                memmove(outArray+pos+2, pch+1, 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
             }
         }
@@ -290,6 +316,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         {
             pos = strlen(outArray)-strlen(pch);
             memmove(outArray+pos, pch+1, 10);
+            removed = 1;
             //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
         }
     }
@@ -313,9 +340,9 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
             else
             {
                 pos = strlen(outArray)-strlen(pch);
-                memmove(outArray+pos, "V", 10);
+                memmove(outArray+pos, "VV", 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
-                memmove(outArray+pos+1, pch+1, 10);
+                memmove(outArray+pos+2, pch+1, 10);
                 //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
             }
         }
@@ -323,11 +350,15 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         {
             pos = strlen(outArray)-strlen(pch);
             memmove(outArray+pos, pch+1, 10);
+            removed = 1;
             //printf("HERE-SR-val1  -  inputVal: %s    pch: %s    outArray: %s\n", inputVal, pch, outArray);
         }
     }
 
-    return outArray;
+    if(!removed)
+        return kata_search_and_remove_val1(outArray, removeVal);
+    else
+        return outArray;
 }
 
 
