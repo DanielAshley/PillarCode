@@ -7,7 +7,6 @@ struct Kata
     char *val1;
     char *val2;
     char *outputArray;
-    
 };
 
 Kata *kata_init_values(char *val1, char *val2)
@@ -58,6 +57,7 @@ char *kata_check_special_case(char * inputArray, char * specialCase, char * conv
         }
     }
 
+    free(savedEnding);
     return inputArray;
 }
 
@@ -73,7 +73,9 @@ char *kata_convert_low_to_high(char * inputArray)
     savedEnding = kata_check_special_case(savedEnding, "IIIII", "V");
     
     if(strcmp(inputArray,savedEnding) == 0)
+    {
         return inputArray;
+    }
     else
         return kata_convert_low_to_high(savedEnding); 
 }
@@ -90,7 +92,9 @@ char *kata_substitute_subtractives_back(char * inputArray)
     savedEnding = kata_check_special_case(savedEnding, "IIII", "IV");
     
     if(strcmp(inputArray,savedEnding) == 0)
+    {
         return inputArray;
+    }
     else
         return kata_convert_low_to_high(savedEnding); 
 }
@@ -128,6 +132,8 @@ char *kata_check_subtractives(char * inputArray, char * specialCase, char * conv
            pos_search = 0;
         }
     }
+
+    free(savedEnding);
     return inputArray;
 }
 char *kata_substitute_subtractives(char * val)
@@ -142,7 +148,9 @@ char *kata_substitute_subtractives(char * val)
 
 
     if(strcmp(val,savedEnding) == 0)
+    {
         return val;
+    }
     else
         return kata_substitute_subtractives(savedEnding); 
 }
@@ -150,7 +158,7 @@ char *kata_substitute_subtractives(char * val)
 char *kata_search_for_char(char * input, char * searchChar)
 {
     char * outArray = malloc(20);
-    char * pch = malloc(20);
+    char * pch;
 
     outArray[0] = '\0';
 
@@ -160,6 +168,7 @@ char *kata_search_for_char(char * input, char * searchChar)
         strcat(outArray, searchChar);
         pch=strchr(pch+1, searchChar[0]);
     }
+
     return outArray;
 }
 
@@ -167,7 +176,7 @@ char *kata_arrang_concatenated_input(char * val1, char * val2)
 {
     char * outArray = malloc(20);
     char * savedArray = malloc(20);
-    char * pch = malloc(20);
+    char * pch;
 
     outArray[0] = '\0';
     savedArray[0] = '\0';
@@ -201,6 +210,7 @@ char *kata_arrang_concatenated_input(char * val1, char * val2)
     savedArray = kata_search_for_char(val2, "I");
     strcat(outArray, savedArray);
 
+    free(savedArray);
     return outArray;
 }
 
@@ -209,7 +219,7 @@ char *kata_arrang_concatenated_input(char * val1, char * val2)
 char *kata_search_and_remove_val2(char * inputVal, char removeVal)
 {
     char * outArray = malloc(20);
-    char * pch = malloc(20);
+    char * pch;
     int pos = 0;
 
     strcpy(outArray,inputVal);
@@ -224,7 +234,7 @@ char *kata_search_and_remove_val2(char * inputVal, char removeVal)
 char *kata_search_and_remove_val1(char * inputVal, char removeVal)
 {
     char * outArray = malloc(30);
-    char * pch = malloc(30);
+    char * pch;
     strcpy(outArray, inputVal);
     int pos = 0;
     int removed = 0;
@@ -636,12 +646,19 @@ char *kata_remove_like_values(char * val1, char * val2)
             }
         }
     }
+
+
     if(strlen(tempVal2) != 0)
     {
+        free(tempVal2);
+        free(tempVal1);
         return "";
     }
     else
+    {
+        free(tempVal2); 
         return tempVal1;
+    }
 }
 
 char *kata_sub_checker(Kata * k)
@@ -664,8 +681,8 @@ char *kata_check_if_value_is_greater_than_max(char * val, char * max)
 
     test_Kata = kata_init_values(max, val);
     savedValue = kata_sub_checker(test_Kata);
+    
     kata_free(test_Kata);
-
     return savedValue;
 }
 
@@ -686,7 +703,10 @@ char *kata_add(Kata * k)
     outputArray = kata_substitute_subtractives_back(outputArray);
 
     if(strcmp(kata_check_if_value_is_greater_than_max(outputArray, "MMMM"),"") == 0)
+    {
+        free(outputArray);
         return "";
+    }
     return outputArray;
 }
 
@@ -707,7 +727,10 @@ char *kata_sub(Kata * k)
     outputArray = kata_substitute_subtractives_back(outputArray);
 
     if(strcmp(kata_check_if_value_is_greater_than_max(outputArray, "MMMM"),"") == 0)
+    {
+        free(outputArray);
         return "";
+    }
     return outputArray;
 }
 
