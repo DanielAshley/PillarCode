@@ -7,7 +7,6 @@ struct Kata
     char *val1;
     char *val2;
     char *outputArray;
-    char *maxValue;
     
 };
 
@@ -21,12 +20,9 @@ Kata *kata_init_values(char *val1, char *val2)
 
     k->val1 = malloc(20);
     k->val2 = malloc(20);
-    k->outputArray = malloc(20);
 
-    k->outputArray[0] = '\0';
     k->val1 = val1;
     k->val2 = val2;
-    k->maxValue = "MMMM"; //"MMMCMXCIX"; // max value + 1
     return k;
 }
 
@@ -233,7 +229,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
     int pos = 0;
     int removed = 0;
 
-    if(removeVal == 'I')
+    if(removeVal == 'I') // Checking if I removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -308,7 +304,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'V')
+    else if(removeVal == 'V') // Checking if V removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -373,7 +369,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'X')
+    else if(removeVal == 'X') // Checking if X removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -428,7 +424,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'L')
+    else if(removeVal == 'L') // Checking if L removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -473,7 +469,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'C')
+    else if(removeVal == 'C') // Checking if C removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -508,7 +504,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'D')
+    else if(removeVal == 'D') // Checking if D removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -533,7 +529,7 @@ char *kata_search_and_remove_val1(char * inputVal, char removeVal)
         }
     }
 
-    else if(removeVal == 'M')
+    else if(removeVal == 'M') // Checking if M removal is requested
     {
         pch=strchr(inputVal,removeVal);
         if(pch==NULL)
@@ -648,6 +644,19 @@ char *kata_remove_like_values(char * val1, char * val2)
         return tempVal1;
 }
 
+char *kata_sub_checker(Kata * k)
+{
+    
+    k->val1 = kata_substitute_subtractives(k->val1);
+    k->val2 = kata_substitute_subtractives(k->val2);
+    char * outputArray = malloc(20);
+    outputArray = kata_remove_like_values(k->val1, k->val2);
+    outputArray = kata_arrang_concatenated_input(outputArray, "");
+    outputArray = kata_convert_low_to_high(outputArray);
+    outputArray = kata_substitute_subtractives_back(outputArray);
+    return outputArray;
+}
+
 char *kata_check_if_value_is_greater_than_max(char * val, char * max)
 {
     Kata * test_Kata = malloc(sizeof(Kata));
@@ -660,54 +669,46 @@ char *kata_check_if_value_is_greater_than_max(char * val, char * max)
     return savedValue;
 }
 
+
 char *kata_add(Kata * k)
 {
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, "MMMM"),"") == 0)
         return "";
 
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, "MMMM"),"") == 0)
         return "";    
 
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
-    k->outputArray = kata_arrang_concatenated_input(k->val1, k->val2);
-    k->outputArray = kata_convert_low_to_high(k->outputArray);
-    k->outputArray = kata_substitute_subtractives_back(k->outputArray);
+    char * outputArray = malloc(20);
+    outputArray = kata_arrang_concatenated_input(k->val1, k->val2);
+    outputArray = kata_convert_low_to_high(outputArray);
+    outputArray = kata_substitute_subtractives_back(outputArray);
 
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->outputArray, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(outputArray, "MMMM"),"") == 0)
         return "";
-    return k->outputArray;
+    return outputArray;
 }
 
 char *kata_sub(Kata * k)
 {
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val1, "MMMM"),"") == 0)
         return "";
 
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(k->val2, "MMMM"),"") == 0)
         return "";    
 
     k->val1 = kata_substitute_subtractives(k->val1);
     k->val2 = kata_substitute_subtractives(k->val2);
-    k->outputArray = kata_remove_like_values(k->val1, k->val2);
-    k->outputArray = kata_arrang_concatenated_input(k->outputArray, "");
-    k->outputArray = kata_convert_low_to_high(k->outputArray);
-    k->outputArray = kata_substitute_subtractives_back(k->outputArray);
+    char * outputArray = malloc(20);
+    outputArray = kata_remove_like_values(k->val1, k->val2);
+    outputArray = kata_arrang_concatenated_input(outputArray, "");
+    outputArray = kata_convert_low_to_high(outputArray);
+    outputArray = kata_substitute_subtractives_back(outputArray);
 
-    if(strcmp(kata_check_if_value_is_greater_than_max(k->outputArray, k->maxValue),"") == 0)
+    if(strcmp(kata_check_if_value_is_greater_than_max(outputArray, "MMMM"),"") == 0)
         return "";
-    return k->outputArray;
-}
-
-char *kata_sub_checker(Kata * k)
-{
-    k->val1 = kata_substitute_subtractives(k->val1);
-    k->val2 = kata_substitute_subtractives(k->val2);
-    k->outputArray = kata_remove_like_values(k->val1, k->val2);
-    k->outputArray = kata_arrang_concatenated_input(k->outputArray, "");
-    k->outputArray = kata_convert_low_to_high(k->outputArray);
-    k->outputArray = kata_substitute_subtractives_back(k->outputArray);
-    return k->outputArray;
+    return outputArray;
 }
 
 void kata_free(Kata *k)
